@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-background text-on-surface" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KisanSetu AI - Lender &amp; Underwriter Risk Dashboard</title>
+<!-- Google Fonts: Sora & Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Sora:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-fixed-variant": "#234f3f",
+            "on-tertiary-fixed": "#271900",
+            "secondary": "#1f6d00",
+            "surface-variant": "#dbe5de",
+            "surface-tint": "#3b6756",
+            "secondary-container": "#9afa75",
+            "on-background": "#141d19",
+            "secondary-fixed": "#9afa75",
+            "surface-bright": "#f2fcf4",
+            "surface": "#f2fcf4",
+            "error-container": "#ffdad6",
+            "on-tertiary": "#ffffff",
+            "inverse-on-surface": "#e9f3ec",
+            "surface-container-low": "#ecf6ef",
+            "inverse-primary": "#a2d1bb",
+            "surface-container-high": "#e0ebe3",
+            "outline-variant": "#c0c8c3",
+            "primary-fixed-dim": "#a2d1bb",
+            "on-error": "#ffffff",
+            "primary": "#00261a",
+            "tertiary": "#2d1e00",
+            "on-primary-container": "#7ba894",
+            "inverse-surface": "#29322e",
+            "tertiary-container": "#493200",
+            "tertiary-fixed-dim": "#fabc41",
+            "on-secondary-fixed": "#052100",
+            "on-error-container": "#93000a",
+            "secondary-fixed-dim": "#7fdc5c",
+            "on-tertiary-container": "#cd9517",
+            "surface-container": "#e6f0e9",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "tertiary-fixed": "#ffdea8",
+            "surface-dim": "#d2ddd5",
+            "on-secondary": "#ffffff",
+            "surface-container-highest": "#dbe5de",
+            "primary-fixed": "#beedd7",
+            "error": "#ba1a1a",
+            "on-primary": "#ffffff",
+            "on-surface": "#141d19",
+            "on-surface-variant": "#414944",
+            "primary-container": "#0f3d2e",
+            "on-primary-fixed": "#002116",
+            "background": "#f2fcf4",
+            "on-secondary-container": "#227400",
+            "on-secondary-fixed-variant": "#165200",
+            "outline": "#717974"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "2rem",
+            "margin": "2rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "gutter": "1.5rem",
+            "space-lg": "1.5rem",
+            "gutter-mobile": "1rem",
+            "margin-mobile": "1rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "label-md": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-xl": ["Sora"],
+            "body-xl": ["Inter"],
+            "display-lg": ["Sora"],
+            "headline-lg": ["Sora"],
+            "headline-xl-mobile": ["Sora"],
+            "data-mono": ["Inter"],
+            "display-lg-mobile": ["Sora"],
+            "body-sm": ["Inter"],
+            "label-lg": ["Inter"],
+            "headline-md": ["Sora"],
+            "body-md": ["Inter"],
+            "body-lg": ["Inter"]
+          },
+          "fontSize": {
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-xl": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "headline-xl-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "data-mono": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+            "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: rgba(224, 235, 227, 0.4);
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(15, 61, 46, 0.2);
+      border-radius: 4px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(15, 61, 46, 0.4);
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col bg-background font-body-md text-body-md antialiased selection:bg-secondary-container selection:text-primary">
+<!-- TOP APP BAR (Shared Components JSON Anchor: TopNavBar) -->
+<header class="sticky top-0 z-50 bg-surface/85 backdrop-blur-md border-b border-outline-variant/30 shadow-sm transition-all">
+<div class="w-full max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between gap-4">
+<!-- Brand & Regulatory Context -->
+<div class="flex items-center gap-4 shrink-0">
+<a class="flex items-center gap-2 group" href="#">
+<img alt="KisanSetu AI" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WyYJ6vLrJcC9UBDWH0WgNSY8VF3nYZoKFll6I-vAR6h89ktXSWMq1h5UyRha7ixm-jrAzWjDHZYfERwHS1it7t7ofORmRRl46zW0kbDBTW4CZ8Uz66A3phbV7Svwf4WzI272vhKWBsDoUVfaRVIPi8ilDZUAlnS5StmbD25xLXY4NEkyVAyTQ5mxWaLSk9Lxg_Xdthl7scUoajlvE0QEzzTck0Wbn-j41cM_BMkw4m"/>
+<span class="sr-only">KisanSetu AI</span>
+</a>
+<div class="h-6 w-px bg-outline-variant/40 hidden xl:block"></div>
+<div class="hidden xl:flex items-center gap-2 bg-surface-container-high/60 px-2.5 py-1 rounded-full text-primary">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm tracking-wide">Institutional Underwriting Portal • NABARD &amp; PSL Compliant</span>
+</div>
+</div>
+<!-- Navigation Links from Shared Components JSON -->
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-on-surface-variant hover:text-primary font-label-md text-label-md transition-colors flex items-center gap-1.5 pb-1" href="#">
+<span class="material-symbols-outlined text-[18px]">satellite_alt</span>
+          Satellite Telemetry
+        </a>
+<a class="text-on-surface-variant hover:text-primary font-label-md text-label-md transition-colors flex items-center gap-1.5 pb-1" href="#">
+<span class="material-symbols-outlined text-[18px]">query_stats</span>
+          Credit Risk Index
+        </a>
+<a class="border-b-2 border-primary text-primary font-semibold font-label-md text-label-md flex items-center gap-1.5 pb-1" href="#">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+          Underwriting Ledger
+        </a>
+<a class="text-on-surface-variant hover:text-primary font-label-md text-label-md transition-colors flex items-center gap-1.5 pb-1" href="#">
+<span class="material-symbols-outlined text-[18px]">cloud_sync</span>
+          Weather Models
+        </a>
+</nav>
+<!-- Action Cluster, Quick Persona & Tools -->
+<div class="flex items-center gap-3 shrink-0">
+<!-- Persona Indicator Badge -->
+<div class="flex items-center gap-2 bg-surface-container border border-outline-variant/50 px-3 py-1.5 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">verified_user</span>
+<div class="text-left">
+<p class="font-label-sm text-label-sm text-on-surface leading-tight font-semibold">Persona: Lender</p>
+<p class="text-[10px] text-on-surface-variant leading-none">Senior Underwriter (Risk Ops)</p>
+</div>
+</div>
+<!-- Trailing Icon Actions from JSON -->
+<div class="flex items-center gap-1">
+<button class="w-9 h-9 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container active:scale-[0.98] transition-all" title="Satellite Stream Config">
+<span class="material-symbols-outlined text-[20px]">satellite_alt</span>
+</button>
+<button class="w-9 h-9 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container active:scale-[0.98] relative transition-all" title="Notifications">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full ring-2 ring-surface"></span>
+</button>
+<button class="w-9 h-9 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container active:scale-[0.98] transition-all" title="Adjust Underwriting Parameters">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+</div>
+<div class="h-6 w-px bg-outline-variant/40"></div>
+<!-- Primary CTA from JSON -->
+<button class="bg-primary text-on-primary hover:bg-primary-container px-4 py-2 rounded-lg font-label-md text-label-md flex items-center gap-2 shadow-sm active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-[18px]">add_link</span>
+<span>Connect Land Parcel</span>
+</button>
+<!-- Underwriter Risk Officer Profile -->
+<div class="w-9 h-9 rounded-full bg-primary-container text-secondary-fixed flex items-center justify-center font-headline-md text-[13px] font-bold border border-secondary-fixed/30 ring-1 ring-outline-variant/40" title="Underwriter Risk Officer Profile">
+          RP
+        </div>
+</div>
+</div>
+</header>
+<!-- SECONDARY CONTEXT & QUICK FILTERS TOOLBAR -->
+<section class="border-b border-outline-variant/25 bg-surface-container-lowest/90 px-6 py-2.5">
+<div class="max-w-[1600px] mx-auto flex flex-wrap items-center justify-between gap-4">
+<!-- Filter Chips Cluster -->
+<div class="flex flex-wrap items-center gap-3">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px] text-primary">filter_alt</span>
+<span>Active Filter Scopes:</span>
+</div>
+<!-- District Selector -->
+<div class="flex items-center gap-1.5 bg-surface-container-low border border-outline-variant/60 hover:border-primary/50 px-3 py-1.5 rounded-lg text-on-surface text-body-sm transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-[16px] text-primary">pin_drop</span>
+<span class="font-medium text-on-surface-variant">District:</span>
+<span class="font-semibold text-primary">Washim, Maharashtra</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant group-hover:text-primary">expand_more</span>
+</div>
+<!-- Crop Season Selector -->
+<div class="flex items-center gap-1.5 bg-surface-container-low border border-outline-variant/60 hover:border-primary/50 px-3 py-1.5 rounded-lg text-on-surface text-body-sm transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-[16px] text-primary">calendar_month</span>
+<span class="font-medium text-on-surface-variant">Crop Season:</span>
+<span class="font-semibold text-primary">Kharif 2024</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant group-hover:text-primary">expand_more</span>
+</div>
+<!-- Portfolio Segment -->
+<div class="flex items-center gap-1.5 bg-surface-container-low border border-outline-variant/60 hover:border-primary/50 px-3 py-1.5 rounded-lg text-on-surface text-body-sm transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-[16px] text-primary">layers</span>
+<span class="font-medium text-on-surface-variant">Portfolio:</span>
+<span class="font-semibold text-primary">Smallholder Vidarbha Vertisol Pool</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant group-hover:text-primary">expand_more</span>
+</div>
+</div>
+<!-- Bulk Actions & Dossier Export -->
+<div class="flex items-center gap-2.5">
+<button class="bg-surface-container hover:bg-surface-container-high border border-outline-variant/50 text-primary font-label-md text-label-md px-3.5 py-1.5 rounded-lg flex items-center gap-1.5 transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-[18px]">download_for_offline</span>
+<span>Export Dossier</span>
+</button>
+<button class="bg-secondary text-on-secondary hover:opacity-95 font-label-md text-label-md px-3.5 py-1.5 rounded-lg flex items-center gap-1.5 shadow-sm active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-[18px]">fact_check</span>
+<span>Batch Underwrite (48)</span>
+</button>
+</div>
+</div>
+</section>
+<!-- MAIN VIEWPORT CONTAINER -->
+<main class="flex-1 max-w-[1600px] w-full mx-auto px-6 py-6 flex flex-col gap-6">
+<!-- 1. PORTFOLIO OVERVIEW KPI METRICS CARDS -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Card 1: Active AUM & Land Parcels -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-xl p-4 shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Active AUM / Loan Pool</p>
+<h3 class="font-headline-xl text-headline-xl text-primary mt-1 font-bold">₹42.8 Cr</h3>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">account_balance_wallet</span>
+</div>
+</div>
+<div class="mt-3 pt-3 border-t border-outline-variant/20 flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-1.5 text-primary font-medium">
+<span class="material-symbols-outlined text-[16px] text-secondary">crop_free</span>
+<span>3,840 Smallholder Parcels</span>
+</div>
+<span class="text-label-sm font-label-sm bg-secondary-fixed/50 text-on-secondary-fixed px-2 py-0.5 rounded-full">98.2% Geo-tagged</span>
+</div>
+</div>
+<!-- Card 2: Climate Resilience Index -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-xl p-4 shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Climate Resilience Index</p>
+<div class="flex items-baseline gap-2 mt-1">
+<h3 class="font-headline-xl text-headline-xl text-primary font-bold">71.4</h3>
+<span class="font-label-md text-label-md text-on-surface-variant">/ 100</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-secondary-fixed/40 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+</div>
+<div class="mt-3 pt-3 border-t border-outline-variant/20 flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant">Optimal vegetative buffer</span>
+<span class="text-label-sm font-label-sm bg-surface-container text-primary px-2 py-0.5 rounded-full font-semibold">NDVI &gt; 0.62 avg</span>
+</div>
+</div>
+<!-- Card 3: Projected Default Rate -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-xl p-4 shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Projected Default Rate (Adaptive EMI)</p>
+<div class="flex items-baseline gap-2 mt-1">
+<h3 class="font-headline-xl text-headline-xl text-secondary font-bold">3.9%</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant line-through">vs 13.6% Flat</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">trending_down</span>
+</div>
+</div>
+<div class="mt-3 pt-3 border-t border-outline-variant/20 flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-1 text-secondary font-semibold">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span>-71% Default Risk Reduction</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">XGBoost v4.2</span>
+</div>
+</div>
+<!-- Card 4: Triage & Approval Funnel -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-xl p-4 shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Automated Land Passports</p>
+<span class="font-label-md text-label-md text-secondary font-bold">75.9% Pass</span>
+</div>
+<div class="w-full h-2.5 bg-surface-container rounded-full overflow-flex flex gap-0.5 overflow-hidden">
+<div class="h-full bg-secondary" style="width: 75.9%" title="Auto-Approved (2,914)"></div>
+<div class="h-full bg-tertiary-fixed-dim" style="width: 18.5%" title="Under Review (712)"></div>
+<div class="h-full bg-error" style="width: 5.6%" title="High Vulnerability (214)"></div>
+</div>
+</div>
+<div class="mt-3 pt-2.5 border-t border-outline-variant/20 grid grid-cols-3 gap-1 text-center font-label-sm text-label-sm">
+<div>
+<span class="text-secondary font-bold block">2,914</span>
+<span class="text-on-surface-variant text-[10px]">Approved</span>
+</div>
+<div>
+<span class="text-tertiary-container font-bold block">712</span>
+<span class="text-on-surface-variant text-[10px]">Review</span>
+</div>
+<div>
+<span class="text-error font-bold block">214</span>
+<span class="text-on-surface-variant text-[10px]">Flagged</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. MAIN SPLIT VIEW (60% Left / 40% Right) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- LEFT / CENTER COLUMN (60% => 7 of 12 cols on desktop) -->
+<div class="lg:col-span-7 flex flex-col gap-6">
+<!-- GEOSPATIAL PORTFOLIO RISK HEATMAP & TALUKA DISTRIBUTION -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-2xl p-5 shadow-sm flex flex-col gap-4">
+<!-- Map Header & Layer Toggles -->
+<div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-outline-variant/30">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">public</span>
+<h2 class="font-headline-md text-headline-md text-primary font-bold">Geospatial Risk Matrix: Washim Sub-Divisions</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Telemetry coverage: Karanja Lad, Malegaon, Risod &amp; Mangrulpir talukas</p>
+</div>
+<!-- Heatmap Legend -->
+<div class="flex items-center gap-3 bg-surface-container-low px-3 py-1.5 rounded-lg border border-outline-variant/30 text-label-sm font-label-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="text-on-surface">Resilient (&gt;0.65)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary-fixed-dim"></span>
+<span class="text-on-surface">Moderate Risk</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-error"></span>
+<span class="text-on-surface">Drought Alert</span>
+</div>
+</div>
+</div>
+<!-- Interactive Map Canvas Mockup with GIS Elements -->
+<div class="relative w-full h-[360px] rounded-xl overflow-hidden bg-surface-container-high border border-outline-variant/50 select-none">
+<!-- Map Base Grid Pattern / Topography Simulation -->
+<div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(#3b6756 1px, transparent 1px); background-size: 24px 24px;"></div>
+<!-- Dynamic Taluka Polygonal Boundaries & Risk Heat Blobs (SVG Vector Simulation) -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none" viewbox="0 0 700 360">
+<defs>
+<lineargradient id="resilientGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#9afa75" stop-opacity="0.35"></stop>
+<stop offset="100%" stop-color="#1f6d00" stop-opacity="0.2"></stop>
+</lineargradient>
+<lineargradient id="dryGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#fabc41" stop-opacity="0.4"></stop>
+<stop offset="100%" stop-color="#cd9517" stop-opacity="0.25"></stop>
+</lineargradient>
+<lineargradient id="stressGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#ffdad6" stop-opacity="0.5"></stop>
+<stop offset="100%" stop-color="#ba1a1a" stop-opacity="0.3"></stop>
+</lineargradient>
+</defs>
+<!-- Karanja Lad Zone (Healthy vegetative Vertisol) -->
+<polygon fill="url(#resilientGrad)" points="40,30 290,20 340,150 180,180 50,110" stroke="#1f6d00" stroke-dasharray="4,2" stroke-width="1.5"></polygon>
+<text fill="#00261a" font-family="Sora" font-size="12" font-weight="600" x="120" y="80">Karanja Lad Taluka</text>
+<text fill="#141d19" font-family="Inter" font-size="10" x="120" y="96">NDVI: 0.72 • High Hydrology</text>
+<!-- Mangrulpir Zone (Mixed buffer) -->
+<polygon fill="url(#resilientGrad)" points="340,150 560,90 620,210 420,240 330,190" stroke="#1f6d00" stroke-width="1.5"></polygon>
+<text fill="#00261a" font-family="Sora" font-size="12" font-weight="600" x="440" y="150">Mangrulpir Taluka</text>
+<text fill="#141d19" font-family="Inter" font-size="10" x="440" y="166">NDVI: 0.66 • Vertisol Bed</text>
+<!-- Malegaon Zone (Mild moisture stress) -->
+<polygon fill="url(#dryGrad)" points="60,190 280,175 320,330 110,340" stroke="#cd9517" stroke-dasharray="4,2" stroke-width="1.5"></polygon>
+<text fill="#271900" font-family="Sora" font-size="12" font-weight="600" x="140" y="260">Malegaon Taluka</text>
+<text fill="#493200" font-family="Inter" font-size="10" x="140" y="276">NDVI: 0.54 • Mid-Season Dry</text>
+<!-- Risod Zone (Drought watch zone) -->
+<polygon fill="url(#stressGrad)" points="330,250 580,220 670,330 380,350" stroke="#ba1a1a" stroke-width="1.5"></polygon>
+<text fill="#93000a" font-family="Sora" font-size="12" font-weight="600" x="470" y="290">Risod Zone (South)</text>
+<text fill="#ba1a1a" font-family="Inter" font-size="10" x="470" y="306">Deficit Risk: 28% • Sandy Loam</text>
+<!-- Cadastral plot bounds representation -->
+<circle cx="210" cy="95" fill="#0f3d2e" r="4" stroke="#9afa75" stroke-width="2"></circle>
+<circle cx="230" cy="115" fill="#0f3d2e" r="3" stroke="#9afa75" stroke-width="1"></circle>
+<circle cx="180" cy="120" fill="#0f3d2e" r="3.5" stroke="#9afa75" stroke-width="1.5"></circle>
+<circle cx="490" cy="180" fill="#1f6d00" r="4" stroke="#9afa75" stroke-width="1"></circle>
+<circle cx="210" cy="230" fill="#cd9517" r="3.5" stroke="#ffdea8" stroke-width="1.5"></circle>
+<circle cx="510" cy="270" fill="#ba1a1a" r="3.5" stroke="#ffdad6" stroke-width="1.5"></circle>
+</svg>
+<!-- Floating Cadastral Parcel Cluster Hover Inspector -->
+<div class="absolute top-14 left-36 z-20 bg-surface-container-lowest/95 backdrop-blur-md border border-outline-variant/60 rounded-xl p-3 shadow-lg max-w-[260px] pointer-events-auto">
+<div class="flex items-center justify-between gap-2 border-b border-outline-variant/30 pb-1.5 mb-2">
+<span class="font-label-sm text-label-sm font-bold text-primary">Cluster #MH-WSM-SEC-4</span>
+<span class="bg-secondary-fixed/50 text-on-secondary-fixed font-label-sm text-[10px] px-1.5 py-0.5 rounded font-semibold">Verified</span>
+</div>
+<div class="space-y-1 font-body-sm text-body-sm text-on-surface">
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Parcels:</span>
+<span class="font-semibold text-primary">142 Parcels</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Cropping Pattern:</span>
+<span class="font-semibold text-secondary">88% Tur/Soybean</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Avg AI Score:</span>
+<span class="font-bold text-primary">692 / 900</span>
+</div>
+</div>
+<div class="mt-2 pt-1.5 border-t border-outline-variant/20 flex items-center justify-between text-[11px] text-on-surface-variant">
+<span>Vertisol Moisture: 41%</span>
+<span class="text-secondary font-semibold">Low Vulnerability</span>
+</div>
+</div>
+<!-- On-Map Floating Controls: Telemetry Layers -->
+<div class="absolute bottom-3 left-3 z-10 bg-surface-container-lowest/90 backdrop-blur-md border border-outline-variant/50 rounded-lg p-1.5 flex items-center gap-1 shadow-md">
+<button class="px-2.5 py-1 rounded font-label-sm text-label-sm bg-primary text-on-primary font-medium flex items-center gap-1 shadow-xs">
+<span class="material-symbols-outlined text-[14px]">grass</span>
+<span>NDVI Layer</span>
+</button>
+<button class="px-2.5 py-1 rounded font-label-sm text-label-sm text-on-surface hover:bg-surface-container transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">water_drop</span>
+<span>Soil Moisture</span>
+</button>
+<button class="px-2.5 py-1 rounded font-label-sm text-label-sm text-on-surface hover:bg-surface-container transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">grid_4x4</span>
+<span>Cadastral Boundary</span>
+</button>
+<button class="px-2.5 py-1 rounded font-label-sm text-label-sm text-on-surface hover:bg-surface-container transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">thermostat</span>
+<span>2040 Climate Model</span>
+</button>
+</div>
+<!-- Mini Map Zoom & Calibration Tools -->
+<div class="absolute bottom-3 right-3 z-10 flex flex-col gap-1 bg-surface-container-lowest/90 backdrop-blur-md border border-outline-variant/50 rounded-lg p-1 shadow-md">
+<button class="w-7 h-7 flex items-center justify-center text-on-surface hover:bg-surface-container rounded text-sm font-bold" title="Zoom in">+</button>
+<div class="h-px bg-outline-variant/40"></div>
+<button class="w-7 h-7 flex items-center justify-center text-on-surface hover:bg-surface-container rounded text-sm font-bold" title="Zoom out">-</button>
+</div>
+<!-- Coordinate HUD Overlay -->
+<div class="absolute top-3 right-3 z-10 bg-surface-container-lowest/85 backdrop-blur-md px-2.5 py-1 rounded border border-outline-variant/40 text-[11px] font-mono text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px] text-primary">my_location</span>
+<span>20.1037° N, 77.1332° E</span>
+</div>
+</div>
+</div>
+<!-- UNDERWRITING QUEUE & CADASTRAL LEDGER TABLE -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-2xl p-5 shadow-sm flex flex-col gap-4">
+<div class="flex flex-wrap items-center justify-between gap-3">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">assignment</span>
+<h3 class="font-headline-md text-headline-md text-primary font-bold">Priority Underwriting Queue</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">High-confidence algorithmic recommendation based on Agro-Spatial Intelligence</p>
+</div>
+<div class="flex items-center gap-2">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2.5 top-2 text-[16px] text-on-surface-variant">search</span>
+<input class="bg-surface-container-low border border-outline-variant/50 rounded-lg pl-8 pr-3 py-1.5 text-body-sm text-on-surface focus:outline-none focus:border-primary w-52" placeholder="Search KCC ID or 7/12 Survey..." type="text"/>
+</div>
+<button class="bg-surface-container hover:bg-surface-container-high px-2.5 py-1.5 rounded-lg border border-outline-variant/40 text-on-surface font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">sort</span>
+<span>Sort: Risk Score</span>
+</button>
+</div>
+</div>
+<!-- Cadastral Ledger Table -->
+<div class="overflow-x-auto custom-scroll -mx-5 px-5">
+<table class="w-full text-left border-collapse min-w-[620px]">
+<thead>
+<tr class="border-b border-outline-variant/40 text-on-surface-variant font-label-sm text-label-sm bg-surface-container-low/50">
+<th class="py-2.5 px-3 font-semibold rounded-l-lg">Applicant &amp; Cadastral ID</th>
+<th class="py-2.5 px-3 font-semibold">Land Area</th>
+<th class="py-2.5 px-3 font-semibold">AI Risk Score</th>
+<th class="py-2.5 px-3 font-semibold">Recommended Loan</th>
+<th class="py-2.5 px-3 font-semibold">SHAP Confidence</th>
+<th class="py-2.5 px-3 font-semibold">Decision Status</th>
+<th class="py-2.5 px-3 font-semibold text-right rounded-r-lg">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/25 font-body-sm text-body-sm">
+<!-- Row 1: Ramesh Patil (ACTIVE / SELECTED) -->
+<tr class="bg-secondary-fixed/15 hover:bg-secondary-fixed/25 transition-colors cursor-pointer group">
+<td class="py-3 px-3">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-primary text-secondary-fixed font-bold flex items-center justify-center text-xs">
+                        RP
+                      </div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-bold text-primary group-hover:text-primary-container">Ramesh Patil</span>
+<span class="material-symbols-outlined text-[15px] text-secondary">verified</span>
+</div>
+<p class="font-mono text-[11px] text-on-surface-variant">#MH-WSM-4029 • Karanja</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-3 font-medium">3.50 Acres<br/><span class="text-[11px] text-on-surface-variant">Soybean (Vertisol)</span></td>
+<td class="py-3 px-3">
+<span class="font-headline-md text-headline-md font-bold text-primary">684</span>
+<span class="text-[11px] text-on-surface-variant block">Tier A-2</span>
+</td>
+<td class="py-3 px-3">
+<span class="font-bold text-on-surface">₹1,85,000</span>
+<span class="text-[11px] text-secondary font-medium block">3 Tranches</span>
+</td>
+<td class="py-3 px-3">
+<div class="flex items-center gap-1.5">
+<div class="w-12 bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-secondary h-full" style="width: 94%"></div>
+</div>
+<span class="font-bold text-primary text-label-sm">94%</span>
+</div>
+</td>
+<td class="py-3 px-3">
+<span class="bg-secondary-fixed/60 text-on-secondary-fixed font-label-sm text-[11px] px-2 py-0.5 rounded-full font-bold inline-block">
+                      Ready for Disbursement
+                    </span>
+</td>
+<td class="py-3 px-3 text-right">
+<span class="material-symbols-outlined text-primary text-[20px]">chevron_right</span>
+</td>
+</tr>
+<!-- Row 2: Suresh Deshmukh -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="py-3 px-3">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-surface-container text-primary font-bold flex items-center justify-center text-xs">
+                        SD
+                      </div>
+<div>
+<span class="font-semibold text-on-surface">Suresh Deshmukh</span>
+<p class="font-mono text-[11px] text-on-surface-variant">#MH-WSM-8192 • Malegaon</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-3 font-medium">4.20 Acres<br/><span class="text-[11px] text-on-surface-variant">Cotton / Soybean</span></td>
+<td class="py-3 px-3">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">618</span>
+<span class="text-[11px] text-on-surface-variant block">Tier B-1</span>
+</td>
+<td class="py-3 px-3">
+<span class="font-bold text-on-surface">₹2,10,000</span>
+<span class="text-[11px] text-on-surface-variant block">Pending T-1</span>
+</td>
+<td class="py-3 px-3">
+<div class="flex items-center gap-1.5">
+<div class="w-12 bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-secondary h-full" style="width: 88%"></div>
+</div>
+<span class="font-bold text-on-surface text-label-sm">88%</span>
+</div>
+</td>
+<td class="py-3 px-3">
+<span class="bg-surface-container-high text-on-surface-variant font-label-sm text-[11px] px-2 py-0.5 rounded-full font-semibold inline-block">
+                      Under Review (Soil Dry)
+                    </span>
+</td>
+<td class="py-3 px-3 text-right">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">chevron_right</span>
+</td>
+</tr>
+<!-- Row 3: Sunita Rathod -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="py-3 px-3">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-surface-container text-primary font-bold flex items-center justify-center text-xs">
+                        SR
+                      </div>
+<div>
+<span class="font-semibold text-on-surface">Sunita Rathod</span>
+<p class="font-mono text-[11px] text-on-surface-variant">#MH-WSM-2210 • Mangrulpir</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-3 font-medium">2.10 Acres<br/><span class="text-[11px] text-on-surface-variant">Tur &amp; Moong Dal</span></td>
+<td class="py-3 px-3">
+<span class="font-headline-md text-headline-md font-bold text-primary">742</span>
+<span class="text-[11px] text-secondary font-medium block">Tier A-1 (Prime)</span>
+</td>
+<td class="py-3 px-3">
+<span class="font-bold text-on-surface">₹1,15,000</span>
+<span class="text-[11px] text-secondary font-medium block">Fast-Track Pass</span>
+</td>
+<td class="py-3 px-3">
+<div class="flex items-center gap-1.5">
+<div class="w-12 bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-secondary h-full" style="width: 97%"></div>
+</div>
+<span class="font-bold text-primary text-label-sm">97%</span>
+</div>
+</td>
+<td class="py-3 px-3">
+<span class="bg-secondary-fixed/60 text-on-secondary-fixed font-label-sm text-[11px] px-2 py-0.5 rounded-full font-bold inline-block">
+                      Pre-Approved
+                    </span>
+</td>
+<td class="py-3 px-3 text-right">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">chevron_right</span>
+</td>
+</tr>
+<!-- Row 4: Ganesh Jadhav -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="py-3 px-3">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-surface-container text-primary font-bold flex items-center justify-center text-xs">
+                        GJ
+                      </div>
+<div>
+<span class="font-semibold text-on-surface">Ganesh Jadhav</span>
+<p class="font-mono text-[11px] text-on-surface-variant">#MH-WSM-9943 • Risod</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-3 font-medium">5.00 Acres<br/><span class="text-[11px] text-on-surface-variant">Soybean / Jowar</span></td>
+<td class="py-3 px-3">
+<span class="font-headline-md text-headline-md font-bold text-error">512</span>
+<span class="text-[11px] text-error font-medium block">Tier C-2 Flagged</span>
+</td>
+<td class="py-3 px-3">
+<span class="font-bold text-on-surface">₹2,40,000</span>
+<span class="text-[11px] text-error font-medium block">Capped ₹1.2L</span>
+</td>
+<td class="py-3 px-3">
+<div class="flex items-center gap-1.5">
+<div class="w-12 bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-tertiary-fixed-dim h-full" style="width: 79%"></div>
+</div>
+<span class="font-bold text-on-surface text-label-sm">79%</span>
+</div>
+</td>
+<td class="py-3 px-3">
+<span class="bg-error-container text-on-error-container font-label-sm text-[11px] px-2 py-0.5 rounded-full font-bold inline-block">
+                      Drought Risk Flag
+                    </span>
+</td>
+<td class="py-3 px-3 text-right">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">chevron_right</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Quick Action Buttons for Cadastral Ledger -->
+<div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-outline-variant/30">
+<span class="font-label-sm text-label-sm text-on-surface-variant">
+              Showing 4 priority cases out of 712 pending underwriter audit
+            </span>
+<div class="flex items-center gap-2">
+<button class="bg-surface-container hover:bg-surface-container-high border border-outline-variant/50 px-3 py-1.5 rounded-lg text-primary font-label-sm text-label-sm flex items-center gap-1.5 transition-all">
+<span class="material-symbols-outlined text-[16px]">psychology</span>
+<span>Inspect SHAP Explainability</span>
+</button>
+<button class="bg-surface-container hover:bg-surface-container-high border border-outline-variant/50 px-3 py-1.5 rounded-lg text-primary font-label-sm text-label-sm flex items-center gap-1.5 transition-all">
+<span class="material-symbols-outlined text-[16px]">flight_takeoff</span>
+<span>Request Ground Drone Verification</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (40% => 5 of 12 cols on desktop) -->
+<!-- DEEP UNDERWRITER RISK DOSSIER -->
+<div class="lg:col-span-5 bg-surface-container-lowest border border-outline-variant/50 rounded-2xl p-5 shadow-sm flex flex-col gap-5 sticky top-20">
+<!-- Dossier Header -->
+<div class="flex items-start justify-between border-b border-outline-variant/30 pb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-primary text-secondary-fixed flex items-center justify-center font-headline-md text-headline-md font-bold shadow-sm">
+              RP
+            </div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-md text-headline-md font-bold text-primary">Ramesh Patil</h3>
+<span class="bg-secondary-fixed/60 text-on-secondary-fixed font-label-sm text-[11px] px-2 py-0.5 rounded-full font-bold">KCC Active</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Karanja Lad, Washim • 3.50 Acres Soybean (Vertisol Soil)
+              </p>
+<p class="font-mono text-[11px] text-on-surface-variant">Cadastral Survey: 7/12 #MH-WSM-4029-A</p>
+</div>
+</div>
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded-lg hover:bg-surface-container" title="Full Screen Dossier">
+<span class="material-symbols-outlined text-[20px]">open_in_new</span>
+</button>
+</div>
+<!-- AI Composite Score Gauge & Health Breakdown -->
+<div class="bg-surface-container-low rounded-xl p-4 border border-outline-variant/40">
+<div class="flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">AI Composite Risk Score</p>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-display-lg text-[40px] leading-tight font-bold text-primary font-headline-xl">684</span>
+<span class="font-label-md text-label-md text-on-surface-variant">/ 900</span>
+</div>
+<span class="inline-flex items-center gap-1 bg-secondary-fixed/70 text-on-secondary-fixed font-label-sm text-label-sm px-2.5 py-0.5 rounded-full font-bold mt-1">
+<span class="material-symbols-outlined text-[14px]">shield</span>
+                Tier A-2 Low-Moderate Risk
+              </span>
+</div>
+<!-- Agronomic Radar Mini Spec -->
+<div class="text-right space-y-1 font-body-sm text-body-sm">
+<div>
+<span class="text-on-surface-variant text-label-sm">Sentinel NDVI:</span>
+<span class="font-semibold text-primary ml-1 font-mono">0.68</span>
+</div>
+<div>
+<span class="text-on-surface-variant text-label-sm">Vertisol SM:</span>
+<span class="font-semibold text-primary ml-1 font-mono">42% (Saturated)</span>
+</div>
+<div>
+<span class="text-on-surface-variant text-label-sm">Expected Yield:</span>
+<span class="font-semibold text-secondary ml-1">11.4 Qtl/Acre</span>
+</div>
+<div>
+<span class="text-on-surface-variant text-label-sm">Repay Probability:</span>
+<span class="font-semibold text-secondary ml-1 font-mono">96.1%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Agronomic Explainability & SHAP Waterfall Factors -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<h4 class="font-label-lg text-label-lg font-bold text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[18px]">waterfall_chart</span>
+              SHAP Explainability &amp; Risk Attribution
+            </h4>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">Model: LightGBM-S2-v4</span>
+</div>
+<div class="space-y-2 bg-surface-container-lowest border border-outline-variant/40 rounded-xl p-3">
+<!-- Factor 1 -->
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="text-on-surface">Sentinel-2 Multi-Year NDVI Stability</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-16 bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-secondary h-full" style="width: 70%"></div>
+</div>
+<span class="font-mono text-secondary font-bold text-label-sm">+14 pts</span>
+</div>
+</div>
+<!-- Factor 2 -->
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed-dim"></span>
+<span class="text-on-surface">Kharif Dry-Spell Vertisol Buffering</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-16 bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-tertiary-fixed-dim h-full" style="width: 45%"></div>
+</div>
+<span class="font-mono text-tertiary-container font-bold text-label-sm">-9 pts</span>
+</div>
+</div>
+<!-- Factor 3 -->
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="text-on-surface">Historical KCC Repayment Discipline</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-16 bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-secondary h-full" style="width: 55%"></div>
+</div>
+<span class="font-mono text-secondary font-bold text-label-sm">+11 pts</span>
+</div>
+</div>
+<!-- Factor 4 -->
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed-dim"></span>
+<span class="text-on-surface">APMC Mandi Price Exposure</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-16 bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-tertiary-fixed-dim h-full" style="width: 30%"></div>
+</div>
+<span class="font-mono text-tertiary-container font-bold text-label-sm">-6 pts</span>
+</div>
+</div>
+</div>
+</div>
+<!-- CLIMATE-LINKED TRANCHE DISBURSAL RECOMMENDATION -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<h4 class="font-label-lg text-label-lg font-bold text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">account_tree</span>
+              Climate-Linked Tranche Disbursal
+            </h4>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Total ₹1,85,000</span>
+</div>
+<div class="space-y-2.5">
+<!-- Tranche 1: Completed -->
+<div class="bg-surface-container-low border border-outline-variant/30 rounded-xl p-3 flex items-start justify-between">
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">check_circle</span>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-bold text-primary text-body-md">Tranche 1: Sowing &amp; Seed</span>
+<span class="bg-surface-container text-on-surface-variant font-label-sm text-[10px] px-1.5 py-0.2 rounded font-semibold">Completed</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Basal Fertilisers &amp; Certified Seed • Released Jun 20</p>
+</div>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">₹65,000</span>
+</div>
+<!-- Tranche 2: READY FOR RELEASE -->
+<div class="bg-secondary-fixed/20 border-2 border-secondary/40 rounded-xl p-3 flex items-start justify-between relative shadow-xs">
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5 animate-bounce">pending_actions</span>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-bold text-primary text-body-md">Tranche 2: Vegetative Growth</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed font-label-sm text-[10px] px-2 py-0.5 rounded-full font-bold">VERIFIED</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface mt-0.5">
+                    Post-Weeding &amp; Foliar Spray • Sentinel-2 NDVI Verified &gt; 0.65
+                  </p>
+<p class="text-[11px] text-secondary font-semibold mt-1">Ready for Underwriter Sign-Off</p>
+</div>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-secondary">₹55,000</span>
+</div>
+<!-- Tranche 3: Scheduled -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-3 flex items-start justify-between opacity-80">
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-outline text-[20px] mt-0.5">schedule</span>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-bold text-on-surface text-body-md">Tranche 3: Harvest &amp; Storage</span>
+<span class="bg-surface-container text-on-surface-variant font-label-sm text-[10px] px-1.5 py-0.2 rounded font-semibold">Scheduled</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Pre-Harvest Logistics • Scheduled Nov 1</p>
+</div>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">₹65,000</span>
+</div>
+</div>
+</div>
+<!-- PARAMETRIC MICRO-INSURANCE TIE-IN -->
+<div class="bg-surface-container-low rounded-xl p-3.5 border border-outline-variant/40 flex items-start gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">umbrella</span>
+</div>
+<div>
+<div class="flex items-center justify-between">
+<h5 class="font-label-md text-label-md font-bold text-primary">Parametric Micro-Insurance Tie-In</h5>
+<span class="bg-surface-container-high text-primary font-label-sm text-[10px] px-1.5 py-0.5 rounded font-mono">PMFBY API Sync</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-snug">
+              Automated trigger: If continuous dry spell &gt; 14 days during flowering window (Aug 10–25), automatic 15% interest subvention activated via NABARD Smart Contract.
+            </p>
+</div>
+</div>
+<!-- PRIMARY UNDERWRITER DECISION BUTTONS -->
+<div class="pt-2 flex flex-col gap-2">
+<button class="w-full bg-secondary text-on-secondary hover:opacity-95 font-label-lg text-label-lg py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-sm active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-[20px]">credit_score</span>
+<span>Authorize Tranche 2 Disbursal (₹55,000)</span>
+</button>
+<button class="w-full bg-surface-container hover:bg-surface-container-high border border-outline-variant/60 text-primary font-label-md text-label-md py-2.5 rounded-xl font-semibold flex items-center justify-center gap-2 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-[18px]">print</span>
+<span>Issue Formal KCC Sanction Letter</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- INSTITUTIONAL COMPLIANCE & AUDIT FOOTER -->
+<footer class="mt-auto border-t border-outline-variant/30 bg-surface-container-lowest py-3.5 px-6">
+<div class="max-w-[1600px] mx-auto flex flex-wrap items-center justify-between gap-4 text-body-sm text-on-surface-variant">
+<!-- Regulatory Badges -->
+<div class="flex flex-wrap items-center gap-4">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]">verified_user</span>
+<span class="text-on-surface font-semibold">RBI Master Circular on Priority Sector Lending (PSL) Compliant</span>
+</div>
+<div class="h-4 w-px bg-outline-variant/40 hidden md:block"></div>
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-primary text-[16px]">integration_instructions</span>
+<span>AgriStack Cadastral Parity: Verified</span>
+</div>
+<div class="h-4 w-px bg-outline-variant/40 hidden md:block"></div>
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-primary text-[16px]">lock</span>
+<span>Digital Personal Data Protection (DPDP) Act 2023 Audited</span>
+</div>
+</div>
+<!-- Live Satellite Sync Status -->
+<div class="flex items-center gap-2 font-mono text-[11px] bg-surface-container-low px-3 py-1 rounded-full border border-outline-variant/30">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+<span class="text-on-surface">Satellite Telemetry Sync:</span>
+<span class="text-primary font-bold">Sentinel-2 Tile B04/B08 L2A (14 mins ago)</span>
+</div>
+</div>
+</footer>
+</body></html>

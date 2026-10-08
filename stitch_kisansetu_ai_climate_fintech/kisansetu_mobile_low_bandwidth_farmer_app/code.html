@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+
+<html class="light" lang="mr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>KisanSetu Mobile - शेतकरी डॅशबोर्ड</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-surface": "#29322e",
+            "tertiary-fixed": "#ffdea8",
+            "tertiary": "#2d1e00",
+            "on-secondary-fixed-variant": "#165200",
+            "on-primary-container": "#7ba894",
+            "inverse-primary": "#a2d1bb",
+            "secondary": "#1f6d00",
+            "on-error": "#ffffff",
+            "on-tertiary-fixed": "#271900",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-secondary": "#ffffff",
+            "on-surface-variant": "#414944",
+            "primary-container": "#0f3d2e",
+            "surface-variant": "#dbe5de",
+            "tertiary-fixed-dim": "#fabc41",
+            "surface-container-high": "#e0ebe3",
+            "inverse-on-surface": "#e9f3ec",
+            "surface-tint": "#3b6756",
+            "tertiary-container": "#493200",
+            "on-secondary-fixed": "#052100",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "on-primary-fixed-variant": "#234f3f",
+            "surface-dim": "#d2ddd5",
+            "secondary-fixed-dim": "#7fdc5c",
+            "background": "#f2fcf4",
+            "surface": "#f2fcf4",
+            "on-tertiary": "#ffffff",
+            "on-secondary-container": "#227400",
+            "on-error-container": "#93000a",
+            "on-background": "#141d19",
+            "surface-container-highest": "#dbe5de",
+            "on-primary-fixed": "#002116",
+            "secondary-container": "#9afa75",
+            "primary-fixed-dim": "#a2d1bb",
+            "primary": "#00261a",
+            "surface-container-low": "#ecf6ef",
+            "on-tertiary-container": "#cd9517",
+            "secondary-fixed": "#9afa75",
+            "surface-bright": "#f2fcf4",
+            "outline-variant": "#c0c8c3",
+            "primary-fixed": "#beedd7",
+            "on-primary": "#ffffff",
+            "surface-container": "#e6f0e9",
+            "on-surface": "#141d19",
+            "outline": "#717974"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-mobile": "1rem",
+            "space-md": "1rem",
+            "space-xl": "2rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "margin": "2rem",
+            "space-lg": "1.5rem",
+            "margin-mobile": "1rem",
+            "gutter": "1.5rem"
+          },
+          "fontFamily": {
+            "body-xl": ["Inter"],
+            "data-mono": ["Inter"],
+            "headline-md": ["Sora"],
+            "headline-xl-mobile": ["Sora"],
+            "label-sm": ["Inter"],
+            "headline-xl": ["Sora"],
+            "headline-lg": ["Sora"],
+            "headline-lg-mobile": ["Sora"],
+            "body-sm": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-md": ["Inter"],
+            "label-lg": ["Inter"],
+            "display-lg-mobile": ["Sora"],
+            "body-md": ["Inter"],
+            "display-lg": ["Sora"]
+          },
+          "fontSize": {
+            "body-xl": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "data-mono": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+            "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+            "headline-xl-mobile": ["26px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+            "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+            "headline-lg-mobile": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+            "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+            "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+            "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+            "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill-icon {
+      font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+    }
+    /* Pulse ring for field voice action */
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.08); opacity: 0.3; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .voice-pulse {
+      animation: pulse-ring 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    /* Offline status strip badge marquee or smooth display */
+    body {
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex justify-center selection:bg-secondary-fixed selection:text-primary">
+<!-- Mobile Viewport Container (~390px bounded) -->
+<div class="w-full max-w-[412px] bg-surface flex flex-col min-h-screen relative pb-28 shadow-2xl">
+<!-- 1. TOP BAR & SYSTEM CONNECTIVITY STRIP -->
+<header class="sticky top-0 z-30 bg-surface/95 backdrop-blur-md px-4 pt-3 pb-3 border-b border-outline-variant/30">
+<!-- Network / 2G Offline Synced Header Pill -->
+<div class="flex items-center justify-between pb-2 mb-2 border-b border-outline-variant/20 text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="inline-flex relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold tracking-tight">Offline Ready</span>
+<span class="font-body-sm text-body-sm text-outline">• Synced 14m ago (2G)</span>
+</div>
+<!-- 2G Data Saver indicator & Language toggle -->
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1 px-1.5 py-0.5 rounded bg-surface-container text-primary font-label-sm text-label-sm" title="2G Data Saver Active">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+<span>2G बचत</span>
+</div>
+<button class="px-2 py-0.5 rounded-full border border-primary/20 bg-primary-fixed/40 text-primary font-label-sm text-label-sm font-bold active:scale-95 transition-transform" id="langToggle">
+            मराठी / ENG
+          </button>
+</div>
+</div>
+<!-- Farmer Identity & KCC Header Card -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img class="w-11 h-11 rounded-full object-cover ring-2 ring-primary/20 bg-surface-variant" data-alt="Dignified portrait of an Indian Maharashtrian smallholder farmer named Ramesh Patil wearing a light white Nehru shirt and traditional Gandhi topi, standing outdoors in green agricultural farmlands under soft bright morning sunlight with confident high clarity and sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-Gapm0_NND6O3lBvkYRkj_tGaY2NbppzRCObeGAPGLlvsZFbg9H4651HXNph9mNtzGQPWXLF1BsQD3J9jmKwQbCyogfzP4TlmQ1mrvki-cPkLNEBQP2suxUQArI-sIX1yRHs5Qrv8cNtfSznqRZfhonm7xsTOaHmay-fQb12IqMQOswlYPWhGcPREYMawUalO3RFsUo6A_qJqk1HiU59wG2_IEjs7VbxqHUPp9i8"/>
+<span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-secondary-fixed rounded-full ring-2 ring-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-on-secondary-fixed font-bold">check</span>
+</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<h1 class="font-headline-md text-[17px] leading-tight text-primary font-bold">रमेश पाटील</h1>
+<span class="font-label-sm text-[10px] bg-primary text-on-primary px-1.5 py-0.2 rounded font-semibold tracking-wider">KCC सत्यापित</span>
+</div>
+<p class="font-data-mono text-[11px] text-on-surface-variant font-medium mt-0.5">
+              ID: <span class="text-primary font-semibold">#MH-KCC-9402</span> • करंजा लाड (वाशीम)
+            </p>
+</div>
+</div>
+<button aria-label="Notifications" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+</div>
+</header>
+<!-- MAIN SCROLLABLE CONTENT CANVAS -->
+<main class="flex-1 px-4 pt-3 space-y-4">
+<!-- 2. LARGE VOICE-FIRST ACTION CARD (Marathi Primary) -->
+<section class="bg-gradient-to-br from-primary-container to-[#08241b] rounded-2xl p-4 text-on-primary shadow-lg relative overflow-hidden">
+<!-- Background subtle topographic contour glow -->
+<div class="absolute -right-12 -bottom-12 w-44 h-44 rounded-full bg-secondary-fixed/15 blur-2xl pointer-events-none"></div>
+<div class="flex items-start justify-between relative z-10">
+<div>
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-white/10 text-secondary-fixed font-label-sm text-[11px] font-semibold mb-1">
+<span class="material-symbols-outlined text-[14px]">mic</span>
+<span>AI कृषी संवाद सहाय्यक (2G Voice)</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-white tracking-tight">
+              दाबा आणि बोला
+            </h2>
+<p class="font-body-sm text-body-sm text-surface-variant/90 mt-0.5">
+              Speak your farming question in Marathi
+            </p>
+</div>
+<!-- Pulsing High-Contrast Voice Mic Trigger Button -->
+<div class="relative flex items-center justify-center">
+<div class="absolute w-16 h-16 rounded-full bg-secondary-fixed/20 voice-pulse"></div>
+<button aria-label="Record voice question" class="relative z-10 w-14 h-14 rounded-full bg-secondary-fixed text-primary flex items-center justify-center shadow-md active:scale-90 transition-transform focus:outline-none" id="voiceTriggerBtn">
+<span class="material-symbols-outlined fill-icon text-[30px] text-primary">mic</span>
+</button>
+</div>
+</div>
+<!-- Animated Audio Sound Wave Visualizer Mock -->
+<div class="mt-3 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-secondary-fixed font-data-mono">
+<div class="flex items-center gap-1">
+<span class="h-2 w-1 bg-secondary-fixed rounded-full animate-pulse"></span>
+<span class="h-4 w-1 bg-secondary-fixed rounded-full animate-pulse delay-75"></span>
+<span class="h-3 w-1 bg-secondary-fixed rounded-full animate-pulse delay-150"></span>
+<span class="h-5 w-1 bg-secondary-fixed rounded-full animate-pulse delay-100"></span>
+<span class="h-2 w-1 bg-secondary-fixed rounded-full animate-pulse"></span>
+<span class="font-body-sm text-[11px] text-surface-variant ml-2">ऐकण्यासाठी तयार (Offline Ready)</span>
+</div>
+<span class="font-label-sm text-[10px] text-white/70">विनामूल्य / Free</span>
+</div>
+<!-- Quick Voice Pills -->
+<div class="mt-3 flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+<button class="shrink-0 flex items-center gap-1.5 bg-white/15 hover:bg-white/20 active:scale-95 text-white px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-sm transition-all border border-white/10">
+<span class="material-symbols-outlined text-[15px] text-secondary-fixed">currency_rupee</span>
+<span>सोयाबीन भाव (Soybean mandi)</span>
+</button>
+<button class="shrink-0 flex items-center gap-1.5 bg-white/15 hover:bg-white/20 active:scale-95 text-white px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-sm transition-all border border-white/10">
+<span class="material-symbols-outlined text-[15px] text-secondary-fixed">rainy</span>
+<span>पाऊस अंदाज (Rain)</span>
+</button>
+<button class="shrink-0 flex items-center gap-1.5 bg-white/15 hover:bg-white/20 active:scale-95 text-white px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-sm transition-all border border-white/10">
+<span class="material-symbols-outlined text-[15px] text-secondary-fixed">pest_control</span>
+<span>कीड नियंत्रण (Pests)</span>
+</button>
+</div>
+</section>
+<!-- 3. SIMPLIFIED FARM HEALTH GAUGE (NDVI + Parcel Details) -->
+<section class="bg-surface-container-lowest rounded-2xl p-4 border border-outline-variant/40 shadow-sm">
+<div class="flex items-start justify-between mb-3">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">satellite_alt</span>
+<h2 class="font-headline-md text-headline-md text-primary font-bold">शेत आरोग्य दर्शक</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              गट क्र. MH-WSM-4029 • ३.५ एकर (सोयाबीन + तूर)
+            </p>
+</div>
+<!-- Timestamp badge -->
+<span class="px-2 py-0.5 bg-surface-container text-primary font-label-sm text-[11px] rounded font-semibold border border-outline-variant/30">
+            आज १०:४२ AM
+          </span>
+</div>
+<!-- Satellite Health Gauge Module -->
+<div class="bg-surface-container-low rounded-xl p-3 border border-outline-variant/30 flex items-center gap-3.5">
+<!-- Circular NDVI Health Radial Ring Indicator -->
+<div class="relative shrink-0 w-20 h-20 flex items-center justify-center">
+<svg class="w-20 h-20 transform -rotate-90" viewbox="0 0 36 36">
+<!-- Background Circle Track -->
+<path class="text-surface-variant" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path>
+<!-- Active NDVI Gauge Value 0.71 (approx 71% ring fill) -->
+<path class="text-secondary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="71, 100" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="font-headline-md text-[18px] font-bold text-primary leading-none">0.71</span>
+<span class="font-label-sm text-[9px] uppercase tracking-wider text-secondary font-bold mt-0.5">NDVI</span>
+</div>
+</div>
+<!-- Health Status & Telemetry Readout -->
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-headline-md text-[15px] font-bold text-secondary">
+                उत्तम (Vigorous Crop)
+              </span>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface-variant leading-snug">
+              युरोपियन Sentinel-2 उपग्रह निरीक्षणानुसार पिकाची वाढ समाधानकारक आहे. कीड किंवा रोगाचा प्रादुर्भाव नाही.
+            </p>
+<div class="mt-2 flex items-center gap-2 font-data-mono text-[11px] text-primary">
+<span class="px-1.5 py-0.5 bg-surface-container-highest rounded text-on-surface font-medium">बायोमास: +१४%</span>
+<span class="px-1.5 py-0.5 bg-surface-container-highest rounded text-on-surface font-medium">ओलावा: चांगला</span>
+</div>
+</div>
+</div>
+<!-- Parcel Micro Satellite Preview Strip -->
+<div class="mt-3 pt-2.5 border-t border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary">radar</span>
+<span class="font-body-sm text-[12px] font-medium text-on-surface">पुढील उपग्रह स्कॅन: २ दिवसानंतर (गुरुवार)</span>
+</div>
+<button class="font-label-sm text-[12px] text-secondary font-bold flex items-center gap-0.5 active:opacity-75">
+<span>नकाशा पहा</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- 4. AGRI-CREDIT PASSPORT QUICK CARD (KCC Underwriting) -->
+<section class="bg-surface-container-lowest rounded-2xl p-4 border-2 border-primary/15 shadow-sm relative overflow-hidden">
+<!-- Top Ribbon Strip -->
+<div class="flex items-center justify-between pb-2.5 border-b border-outline-variant/30">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-primary text-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
+</div>
+<div>
+<h3 class="font-headline-md text-[15px] font-bold text-primary leading-tight">डिजिटल कृषी क्रेडिट पासपोर्ट</h3>
+<p class="font-label-sm text-[11px] text-on-surface-variant">Agri-Credit Passport • KisanSetu AI</p>
+</div>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-[11px] font-bold">
+<span class="material-symbols-outlined text-[13px] fill-icon">verified</span>
+<span>पात्र (Eligible)</span>
+</span>
+</div>
+<!-- Credit Score & Limits Section -->
+<div class="my-3 flex items-center justify-between bg-surface-container-low p-3 rounded-xl border border-outline-variant/30">
+<div>
+<span class="font-label-sm text-[11px] uppercase tracking-wide text-on-surface-variant font-semibold">अंडररायटिंग स्कोअर</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-headline-xl-mobile text-[28px] font-extrabold text-primary leading-none">६८४</span>
+<span class="font-data-mono text-body-sm text-outline font-medium">/ ९००</span>
+</div>
+<span class="font-label-sm text-[11px] font-semibold text-secondary">Tier A-2 (कमी जोखीम / Low Risk)</span>
+</div>
+<div class="text-right border-l border-outline-variant/40 pl-3">
+<span class="font-label-sm text-[11px] uppercase tracking-wide text-on-surface-variant font-semibold">मंजूर KCC मर्यादा</span>
+<div class="font-headline-md text-[18px] font-bold text-primary mt-0.5">₹ १,८५,०००</div>
+<span class="font-label-sm text-[11px] text-outline">व्याजदर: ४% सवलत</span>
+</div>
+</div>
+<!-- Single-Click Action Buttons for Rural Banking -->
+<div class="grid grid-cols-2 gap-2 mt-2">
+<!-- Send to Bank / WhatsApp Direct -->
+<button class="w-full flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-primary text-on-primary font-label-lg text-[13px] font-bold active:scale-[0.98] transition-transform shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-secondary-fixed">share</span>
+<span>लेंडरला पाठवा</span>
+</button>
+<!-- Show QR Code Modal Trigger -->
+<button class="w-full flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-surface-container border border-primary/20 text-primary font-label-lg text-[13px] font-bold active:scale-[0.98] transition-transform" id="qrCodeModalTrigger">
+<span class="material-symbols-outlined text-[18px]">qr_code_2</span>
+<span>QR कोड दाखवा</span>
+</button>
+</div>
+<p class="font-body-sm text-[10px] text-outline text-center mt-2">
+          बँक ऑफ महाराष्ट्र शाखा करंजा लाड सह थेट संलग्नित (NABARD प्रमाणित)
+        </p>
+</section>
+<!-- 5. HYPERLOCAL WEATHER & 3-DAY SIMPLE ADVISORY -->
+<section class="bg-surface-container-lowest rounded-2xl p-4 border border-outline-variant/40 shadow-sm space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">partly_cloudy_day</span>
+<h2 class="font-headline-md text-headline-md text-primary font-bold">हवामान व शेती सल्ला</h2>
+</div>
+<span class="font-label-sm text-secondary font-bold bg-secondary-fixed/30 px-2 py-0.5 rounded text-[11px]">
+            वाशीम मंडळ
+          </span>
+</div>
+<!-- Weather Metrics Grid -->
+<div class="grid grid-cols-3 gap-2">
+<!-- Rain Forecast -->
+<div class="bg-surface-container-low p-2.5 rounded-xl border border-outline-variant/20 text-center">
+<span class="material-symbols-outlined text-[#4DA3E0] text-[22px]">rainy</span>
+<div class="font-headline-md text-[15px] font-bold text-primary mt-1">२८ मिमी</div>
+<div class="font-label-sm text-[10px] text-on-surface-variant font-medium">उद्या पाऊस अंदाज</div>
+</div>
+<!-- Soil Moisture -->
+<div class="bg-surface-container-low p-2.5 rounded-xl border border-outline-variant/20 text-center">
+<span class="material-symbols-outlined text-secondary text-[22px]">water_drop</span>
+<div class="font-headline-md text-[15px] font-bold text-primary mt-1">६८%</div>
+<div class="font-label-sm text-[10px] text-on-surface-variant font-medium">जमिनीतील ओलावा</div>
+</div>
+<!-- Sowing Conditions -->
+<div class="bg-surface-container-low p-2.5 rounded-xl border border-outline-variant/20 text-center">
+<span class="material-symbols-outlined text-secondary text-[22px]">agriculture</span>
+<div class="font-headline-md text-[15px] font-bold text-primary mt-1">अनुकूल</div>
+<div class="font-label-sm text-[10px] text-on-surface-variant font-medium">पेरणी / फवारणी स्थिती</div>
+</div>
+</div>
+<!-- Amber Advisory Alert Box: 12-day Dry Spell Alert -->
+<div class="bg-[#FFF8E6] border-l-4 border-tertiary-fixed-dim p-3 rounded-r-xl flex items-start gap-2.5">
+<span class="material-symbols-outlined text-tertiary-container fill-icon text-[20px] shrink-0 mt-0.5">warning</span>
+<div>
+<h4 class="font-label-lg text-[13px] font-bold text-tertiary leading-snug">
+              महत्त्वाची सूचना: ऑगस्टमध्ये १२ दिवसांचा पावसाचा खंड शक्य!
+            </h4>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-1 leading-relaxed">
+              हवामान मॉडेलनुसार खंड काळात सोयाबीन पिकात <strong class="text-on-surface">तुरीचे आंतरपीक</strong> ओलावा टिकवून ठेवेल. बीबीएफ (BBF) पद्धतीने चर काढून ठेवावेत.
+            </p>
+</div>
+</div>
+<!-- 3-Day Forecast Strip -->
+<div class="pt-2 border-t border-outline-variant/30 flex items-center justify-between text-center font-data-mono text-xs">
+<div class="flex-1 py-1 px-1">
+<div class="font-body-sm text-[11px] text-outline font-semibold">आज</div>
+<div class="font-headline-md text-[13px] text-primary font-bold mt-0.5">३१°C</div>
+<div class="font-label-sm text-[10px] text-on-surface-variant">ढगाळ (३ मिमी)</div>
+</div>
+<div class="w-px h-7 bg-outline-variant/40"></div>
+<div class="flex-1 py-1 px-1 bg-surface-container-low rounded-lg">
+<div class="font-body-sm text-[11px] text-secondary font-bold">उद्या</div>
+<div class="font-headline-md text-[13px] text-secondary font-bold mt-0.5">२७°C</div>
+<div class="font-label-sm text-[10px] text-secondary font-semibold">मुसळधार (२८ मिमी)</div>
+</div>
+<div class="w-px h-7 bg-outline-variant/40"></div>
+<div class="flex-1 py-1 px-1">
+<div class="font-body-sm text-[11px] text-outline font-semibold">परवा</div>
+<div class="font-headline-md text-[13px] text-primary font-bold mt-0.5">२९°C</div>
+<div class="font-label-sm text-[10px] text-on-surface-variant">हळका पाऊस</div>
+</div>
+</div>
+</section>
+<!-- Quick Emergency Mandi & Extension Toll-Free Strip -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container text-primary text-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">support_agent</span>
+<div>
+<span class="font-label-md text-[12px] font-bold">शेतकरी कॉल सेंटर: १८००-१८०-१५५१</span>
+<p class="font-body-sm text-[10px] text-on-surface-variant">निशुल्क शासकीय कृषी सल्ला</p>
+</div>
+</div>
+<a class="px-2.5 py-1 bg-primary text-on-primary rounded-lg font-bold font-label-sm text-[11px] active:scale-95" href="tel:18001801551">
+          कॉल करा
+        </a>
+</div>
+</main>
+<!-- 6. BOTTOM STICKY NAVIGATION (Native Mobile Tab Bar) -->
+<!-- Prohibiting top border line as per style anchor; separated by elevation shadow & background shift -->
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[412px] bg-surface-container-lowest/95 backdrop-blur-md px-3 py-2 z-40 shadow-[0_-4px_16px_rgba(11,20,16,0.08)]">
+<div class="flex items-center justify-around">
+<!-- Tab 1: Home / शेत (Farm) - Active Tab -->
+<button class="flex flex-col items-center justify-center py-1 px-3 rounded-xl text-primary font-bold transition-colors group">
+<span class="material-symbols-outlined fill-icon text-[24px] text-primary group-hover:scale-105 transition-transform">
+            grass
+          </span>
+<span class="font-label-sm text-[11px] tracking-tight mt-0.5 text-primary">
+            शेत (Farm)
+          </span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary mt-0.5"></span>
+</button>
+<!-- Tab 2: Advisory / सल्ला (Chat & Voice) -->
+<button class="flex flex-col items-center justify-center py-1 px-3 rounded-xl text-on-surface-variant hover:text-primary transition-colors group">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-105 transition-transform">
+            record_voice_over
+          </span>
+<span class="font-label-sm text-[11px] tracking-tight mt-0.5">
+            सल्ला (Voice)
+          </span>
+<span class="w-1.5 h-1.5 rounded-full bg-transparent mt-0.5"></span>
+</button>
+<!-- Tab 3: Passport / क्रेडिट (KCC) -->
+<button class="flex flex-col items-center justify-center py-1 px-3 rounded-xl text-on-surface-variant hover:text-primary transition-colors group">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-105 transition-transform">
+            credit_score
+          </span>
+<span class="font-label-sm text-[11px] tracking-tight mt-0.5">
+            क्रेडिट (KCC)
+          </span>
+<span class="w-1.5 h-1.5 rounded-full bg-transparent mt-0.5"></span>
+</button>
+<!-- Tab 4: Weather / हवामान (Weather) -->
+<button class="flex flex-col items-center justify-center py-1 px-3 rounded-xl text-on-surface-variant hover:text-primary transition-colors group">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-105 transition-transform">
+            thunderstorm
+          </span>
+<span class="font-label-sm text-[11px] tracking-tight mt-0.5">
+            हवामान (Rain)
+          </span>
+<span class="w-1.5 h-1.5 rounded-full bg-transparent mt-0.5"></span>
+</button>
+</div>
+</nav>
+<!-- INTERACTIVE QR CODE MODAL OVERLAY (Rural Bank Branch Renewal) -->
+<div class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center p-4" id="qrModal">
+<div class="bg-surface-container-lowest w-full max-w-sm rounded-3xl p-5 border border-outline-variant/30 shadow-2xl animate-in fade-in slide-in-from-bottom duration-200">
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant/30">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[24px]">qr_code_scanner</span>
+<h3 class="font-headline-md text-headline-md text-primary font-bold">KCC ई-पासपोर्ट QR कोड</h3>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant active:scale-90" id="closeQrModal">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="text-center py-4">
+<div class="inline-block p-4 bg-white rounded-2xl border-2 border-primary/20 shadow-inner">
+<!-- Offline Encrypted QR Code Simulation -->
+<svg class="w-44 h-44 mx-auto text-primary" fill="currentColor" viewbox="0 0 100 100">
+<!-- Corner Finder 1 -->
+<rect fill="#00261a" height="28" rx="4" width="28" x="5" y="5"></rect>
+<rect fill="white" height="20" rx="2" width="20" x="9" y="9"></rect>
+<rect fill="#00261a" height="12" rx="1" width="12" x="13" y="13"></rect>
+<!-- Corner Finder 2 -->
+<rect fill="#00261a" height="28" rx="4" width="28" x="67" y="5"></rect>
+<rect fill="white" height="20" rx="2" width="20" x="71" y="9"></rect>
+<rect fill="#00261a" height="12" rx="1" width="12" x="75" y="13"></rect>
+<!-- Corner Finder 3 -->
+<rect fill="#00261a" height="28" rx="4" width="28" x="5" y="67"></rect>
+<rect fill="white" height="20" rx="2" width="20" x="9" y="71"></rect>
+<rect fill="#00261a" height="12" rx="1" width="12" x="13" y="75"></rect>
+<!-- Data Matrix Elements -->
+<rect height="5" width="5" x="38" y="10"></rect>
+<rect height="5" width="5" x="48" y="10"></rect>
+<rect height="5" width="8" x="43" y="18"></rect>
+<rect height="5" width="5" x="38" y="28"></rect>
+<rect height="5" width="5" x="53" y="28"></rect>
+<rect height="5" width="5" x="10" y="38"></rect>
+<rect height="5" width="5" x="22" y="38"></rect>
+<rect height="5" width="10" x="15" y="48"></rect>
+<rect fill="#1f6d00" height="6" width="6" x="38" y="38"></rect>
+<rect height="6" width="6" x="48" y="38"></rect>
+<rect fill="#1f6d00" height="6" width="6" x="58" y="38"></rect>
+<rect height="6" width="6" x="38" y="48"></rect>
+<rect fill="#1f6d00" height="6" width="6" x="48" y="48"></rect>
+<rect height="6" width="6" x="58" y="48"></rect>
+<rect fill="#1f6d00" height="6" width="6" x="38" y="58"></rect>
+<rect height="6" width="6" x="48" y="58"></rect>
+<rect fill="#1f6d00" height="6" width="6" x="58" y="58"></rect>
+<rect height="6" width="6" x="70" y="38"></rect>
+<rect height="6" width="10" x="80" y="38"></rect>
+<rect height="6" width="6" x="75" y="48"></rect>
+<rect height="5" width="15" x="70" y="58"></rect>
+<rect height="5" width="5" x="38" y="70"></rect>
+<rect height="5" width="5" x="48" y="70"></rect>
+<rect height="5" width="8" x="58" y="70"></rect>
+<rect height="6" width="6" x="42" y="80"></rect>
+<rect height="6" width="6" x="52" y="80"></rect>
+<rect height="6" width="6" x="68" y="75"></rect>
+<rect height="6" width="6" x="78" y="75"></rect>
+<rect height="6" width="14" x="72" y="85"></rect>
+</svg>
+</div>
+<div class="mt-3">
+<p class="font-headline-md text-[14px] text-primary font-bold">रमेश बापुराव पाटील</p>
+<p class="font-data-mono text-[11px] text-on-surface-variant">KCC-MH-9402 • स्कोअर ६८४/९००</p>
+<p class="font-body-sm text-[11px] text-outline mt-1">बँक मॅनेजर किंवा सेवा सोसायटी प्रतिनिधींना हा QR कोड दाखवा.</p>
+</div>
+</div>
+<button class="w-full py-2.5 bg-primary text-on-primary rounded-xl font-label-lg text-sm font-bold active:scale-95 transition-transform" id="dismissQrBtn">
+          बंद करा (Close)
+        </button>
+</div>
+</div>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+    // QR Code Modal Logic
+    const qrTrigger = document.getElementById('qrCodeModalTrigger');
+    const qrModal = document.getElementById('qrModal');
+    const closeQr = document.getElementById('closeQrModal');
+    const dismissQr = document.getElementById('dismissQrBtn');
+
+    if (qrTrigger && qrModal) {
+      qrTrigger.addEventListener('click', () => {
+        qrModal.classList.remove('hidden');
+      });
+      closeQr?.addEventListener('click', () => {
+        qrModal.classList.add('hidden');
+      });
+      dismissQr?.addEventListener('click', () => {
+        qrModal.classList.add('hidden');
+      });
+      qrModal.addEventListener('click', (e) => {
+        if (e.target === qrModal) qrModal.classList.add('hidden');
+      });
+    }
+
+    // Voice button micro tactile feedback
+    const voiceBtn = document.getElementById('voiceTriggerBtn');
+    if (voiceBtn) {
+      voiceBtn.addEventListener('click', () => {
+        voiceBtn.classList.toggle('ring-4');
+        voiceBtn.classList.toggle('ring-secondary');
+        const isListening = voiceBtn.classList.contains('ring-4');
+        const subtext = document.querySelector('p.font-body-sm.text-surface-variant\\/90');
+        if (subtext) {
+          subtext.textContent = isListening 
+            ? 'ऐकत आहे... तुमचा प्रश्न विचारा (Listening...)' 
+            : 'Speak your farming question in Marathi';
+        }
+      });
+    }
+
+    // Bilingual Switcher Simple Toggle Demo
+    const langBtn = document.getElementById('langToggle');
+    let isMarathiPrimary = true;
+    if (langBtn) {
+      langBtn.addEventListener('click', () => {
+        isMarathiPrimary = !isMarathiPrimary;
+        langBtn.textContent = isMarathiPrimary ? 'मराठी / ENG' : 'ENG / मराठी';
+      });
+    }
+  </script>
+</body></html>

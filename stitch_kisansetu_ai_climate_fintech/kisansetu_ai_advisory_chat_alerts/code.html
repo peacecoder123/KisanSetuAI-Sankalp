@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+
+<html class="light" lang="mr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KisanSetu AI - Advisory Chat &amp; Real-Time Agronomic Alerts</title>
+<!-- Google Fonts: Inter & Sora -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Sora:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration verbatim as required -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary": "#2d1e00",
+            "error-container": "#ffdad6",
+            "on-background": "#141d19",
+            "on-tertiary-container": "#cd9517",
+            "secondary-fixed-dim": "#7fdc5c",
+            "on-tertiary-fixed": "#271900",
+            "tertiary-fixed-dim": "#fabc41",
+            "primary-fixed": "#beedd7",
+            "outline-variant": "#c0c8c3",
+            "surface-container-high": "#e0ebe3",
+            "background": "#f2fcf4",
+            "tertiary-fixed": "#ffdea8",
+            "surface-tint": "#3b6756",
+            "surface-bright": "#f2fcf4",
+            "primary-fixed-dim": "#a2d1bb",
+            "on-primary-fixed": "#002116",
+            "on-primary-fixed-variant": "#234f3f",
+            "on-surface-variant": "#414944",
+            "secondary-container": "#9afa75",
+            "primary": "#00261a",
+            "inverse-primary": "#a2d1bb",
+            "on-error-container": "#93000a",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "surface": "#f2fcf4",
+            "error": "#ba1a1a",
+            "tertiary-container": "#493200",
+            "on-primary-container": "#7ba894",
+            "surface-container": "#e6f0e9",
+            "inverse-on-surface": "#e9f3ec",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "surface-dim": "#d2ddd5",
+            "outline": "#717974",
+            "inverse-surface": "#29322e",
+            "primary-container": "#0f3d2e",
+            "surface-variant": "#dbe5de",
+            "on-surface": "#141d19",
+            "surface-container-low": "#ecf6ef",
+            "secondary": "#1f6d00",
+            "surface-container-highest": "#dbe5de",
+            "on-secondary-fixed": "#052100",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#227400",
+            "on-secondary-fixed-variant": "#165200",
+            "secondary-fixed": "#9afa75",
+            "on-primary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-mobile": "1rem",
+            "gutter": "1.5rem",
+            "margin": "2rem",
+            "space-lg": "1.5rem",
+            "gutter-mobile": "1rem",
+            "space-sm": "0.5rem",
+            "space-xl": "2rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem"
+          },
+          "fontFamily": {
+            "body-sm": ["Inter"],
+            "display-lg": ["Sora"],
+            "headline-md": ["Sora"],
+            "display-lg-mobile": ["Sora"],
+            "body-xl": ["Inter"],
+            "data-mono": ["Inter"],
+            "headline-xl-mobile": ["Sora"],
+            "label-lg": ["Inter"],
+            "headline-lg": ["Sora"],
+            "label-md": ["Inter"],
+            "headline-xl": ["Sora"],
+            "body-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "label-sm": ["Inter"]
+          },
+          "fontSize": {
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-xl": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "data-mono": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+            "headline-xl-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(224, 235, 227, 0.4);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #c0c8c3;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #717974;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TOP APP BAR (Shared Component Anchor) -->
+<header class="sticky top-0 z-50 bg-surface/85 backdrop-blur-md border-b border-outline-variant/30 shadow-sm transition-colors">
+<div class="w-full max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between gap-4">
+<!-- Brand & Left Cluster -->
+<div class="flex items-center gap-6">
+<a class="flex items-center gap-2 group" href="#">
+<div class="w-9 h-9 rounded-xl bg-primary-container flex items-center justify-center text-secondary-fixed shadow-sm group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[22px]" data-icon="satellite_alt">satellite_alt</span>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">KisanSetu AI</span>
+</a>
+<!-- Desktop Navigation Tabs -->
+<nav class="hidden lg:flex items-center gap-6 ml-4">
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-lg font-label-lg py-1" href="#">Satellite Telemetry</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-lg font-label-lg py-1" href="#">Credit Risk Index</a>
+<a class="border-b-2 border-primary text-primary font-semibold text-label-lg font-label-lg pb-1" href="#">Underwriting Ledger</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-lg font-label-lg py-1" href="#">Weather Models</a>
+</nav>
+</div>
+<!-- Telemetry Live Status, Audio Toggle & Right Actions -->
+<div class="flex items-center gap-3">
+<!-- Sentinel Telemetry Pill -->
+<div class="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container border border-outline-variant/40">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-fixed-dim opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+</span>
+<span class="font-data-mono text-body-sm text-on-surface-variant">Sentinel-2B Pass Sync • 12 mins ago</span>
+</div>
+<!-- Audio Voice Readout Accessibility Switch -->
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-outline-variant/40 bg-surface-container-low hover:bg-surface-container transition-colors text-on-surface text-label-md font-label-md" id="tts-global-toggle" title="Toggle Universal Audio Readout">
+<span class="material-symbols-outlined text-secondary" data-icon="volume_up" style="font-variation-settings: 'FILL' 1;">volume_up</span>
+<span class="hidden md:inline font-semibold">Voice Readout Active</span>
+</button>
+<!-- Persona Badge -->
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container-high border border-outline-variant/50">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="account_circle">account_circle</span>
+<span class="text-label-md font-label-md text-primary font-bold">Persona: Farmer / Ramesh Patil</span>
+</div>
+<!-- Notification Bell -->
+<button aria-label="Notifications" class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[22px]" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error"></span>
+</button>
+<!-- Connect Land Parcel CTA -->
+<button class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary-container text-on-primary text-label-lg font-label-lg hover:bg-primary transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-[18px]" data-icon="add_location_alt">add_location_alt</span>
+<span>Connect Land Parcel</span>
+</button>
+</div>
+</div>
+</header>
+<!-- SUB-HEADER: GEOREFERENCED PARCEL CONTEXT STRIP -->
+<section class="bg-surface-container-low border-b border-outline-variant/30 py-2.5 px-6">
+<div class="max-w-[1600px] mx-auto flex flex-wrap items-center justify-between gap-3 text-body-sm font-body-sm text-on-surface">
+<div class="flex items-center flex-wrap gap-2 sm:gap-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-container-highest font-data-mono text-primary font-semibold">
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="location_on">location_on</span>
+          Washim District / Karanja Lad
+        </span>
+<span class="text-outline-variant">•</span>
+<span class="font-data-mono font-medium text-on-surface">
+          Parcel <strong class="text-primary font-semibold">#MH-WSM-4029</strong> (Khasra 44/2A)
+        </span>
+<span class="text-outline-variant">•</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[14px]" data-icon="grass">grass</span>
+          Soybean (3.50 Acres, Kharif 2024)
+        </span>
+</div>
+<div class="flex items-center gap-4 text-label-sm font-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="water_drop">water_drop</span>
+          Root Moisture: <strong class="text-on-surface">24% v/v</strong>
+</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim" data-icon="wb_sunny">wb_sunny</span>
+          Solar: <strong class="text-on-surface">6.8 kWh/m²</strong>
+</span>
+<span class="hidden md:flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="verified_user">verified_user</span>
+          Survey Validated: 18-Jun-2024
+        </span>
+</div>
+</div>
+</section>
+<!-- MAIN 2-COLUMN VIEWPORT -->
+<main class="flex-1 max-w-[1600px] w-full mx-auto p-4 sm:p-6 lg:p-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- ========================================================
+           LEFT COLUMN: ADVISORY CHAT & VOICE INTERFACE (7 cols)
+           ======================================================== -->
+<section class="lg:col-span-7 flex flex-col h-[calc(100vh-170px)] min-h-[700px] bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-[0_2px_8px_-2px_rgba(11,20,16,0.04),0_8px_24px_-4px_rgba(15,61,46,0.06)] overflow-hidden">
+<!-- Chat Header: Multilingual Selector & Speech Status -->
+<div class="p-4 border-b border-outline-variant/20 bg-surface-container-low/60 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]" data-icon="forum">forum</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary font-bold">KisanSetu Voice &amp; Text Advisory</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Validated by ICAR-CRIDA Vidarbha &amp; Sentinel-2 Hydrology</p>
+</div>
+</div>
+<!-- Active Protocol Chip -->
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed/30 text-on-secondary-fixed text-label-sm font-label-sm border border-secondary-fixed">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+              9 Languages Active
+            </span>
+</div>
+<!-- 9 Indian Languages Bar -->
+<div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-label-sm font-label-sm custom-scrollbar">
+<button class="px-2.5 py-1 rounded-lg border border-outline-variant/40 bg-surface-container-lowest text-on-surface-variant hover:border-primary transition-all flex-shrink-0">English</button>
+<button class="px-2.5 py-1 rounded-lg border border-outline-variant/40 bg-surface-container-lowest text-on-surface-variant hover:border-primary transition-all flex-shrink-0">हिन्दी (Hindi)</button>
+<!-- Selected / Active Marathi -->
+<button class="px-3 py-1 rounded-lg bg-primary text-secondary-fixed font-bold shadow-sm flex items-center gap-1.5 flex-shrink-0 ring-1 ring-secondary-fixed">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed"></span>
+              मराठी (Marathi)
+            </button>
+<button class="px-2.5 py-1 rounded-lg border border-outline-variant/40 bg-surface-container-lowest text-on-surface-variant hover:border-primary transition-all flex-shrink-0">తెలుగు (Telugu)</button>
+<button class="px-2.5 py-1 rounded-lg border border-outline-variant/40 bg-surface-container-lowest text-on-surface-variant hover:border-primary transition-all flex-shrink-0">தமிழ் (Tamil)</button>
+<button class="px-2.5 py-1 rounded-lg border border-outline-variant/40 bg-surface-container-lowest text-on-surface-variant hover:border-primary transition-all flex-shrink-0">ಕನ್ನಡ (Kannada)</button>
+<button class="px-2.5 py-1 rounded-lg border border-outline-variant/40 bg-surface-container-lowest text-on-surface-variant hover:border-primary transition-all flex-shrink-0">ਪੰਜਾਬੀ (Punjabi)</button>
+<button class="px-2.5 py-1 rounded-lg border border-outline-variant/40 bg-surface-container-lowest text-on-surface-variant hover:border-primary transition-all flex-shrink-0">বাংলা (Bengali)</button>
+<button class="px-2.5 py-1 rounded-lg border border-outline-variant/40 bg-surface-container-lowest text-on-surface-variant hover:border-primary transition-all flex-shrink-0">ગુજરાતી (Gujarati)</button>
+</div>
+</div>
+<!-- Chat Conversation Messages Flow -->
+<div class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 custom-scrollbar bg-surface/30">
+<!-- System Timestamp Separator -->
+<div class="flex items-center justify-center my-2">
+<span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-data-mono text-body-sm">
+              Today, 24 June 2024 • Kharif Advisory Cycle #04
+            </span>
+</div>
+<!-- 1. Farmer Message Bubble (User in Marathi) -->
+<div class="flex justify-end gap-3 max-w-[90%] ml-auto">
+<div class="space-y-1.5">
+<div class="bg-primary text-on-primary rounded-2xl rounded-tr-xs p-4 shadow-sm border border-primary/20">
+<p class="font-body-lg text-body-lg text-on-primary font-medium leading-relaxed">
+                  "माझ्या करंजा लाड शेतात सोयाबीन पेरणीसाठी सर्वोत्तम वेळ कोणती आहे? आणि ऑगस्टच्या कोरड्या हवामानाचा धोका कसा टाळावा?"
+                </p>
+</div>
+<div class="flex items-center justify-end gap-2 text-label-sm font-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-secondary" data-icon="mic" style="font-variation-settings: 'FILL' 1;">mic</span>
+<span class="font-data-mono">10:14 AM</span>
+<span>• Sent via WhatsApp Audio transcription</span>
+<span class="material-symbols-outlined text-[14px] text-secondary" data-icon="done_all">done_all</span>
+</div>
+</div>
+<div class="w-9 h-9 rounded-full bg-surface-container-high border border-outline-variant/50 flex-shrink-0 flex items-center justify-center text-primary font-bold">
+              RP
+            </div>
+</div>
+<!-- 2. KisanSetu AI Response (In Marathi with Analytical Rigor) -->
+<div class="flex justify-start gap-3 max-w-[95%]">
+<div class="w-9 h-9 rounded-xl bg-primary-container text-secondary-fixed flex-shrink-0 flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="smart_toy">smart_toy</span>
+</div>
+<div class="space-y-3 flex-1">
+<div class="bg-surface-container-low rounded-2xl rounded-tl-xs p-5 border border-outline-variant/30 text-on-surface space-y-4">
+<div class="flex items-center justify-between pb-2 border-b border-outline-variant/20">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-body-lg font-bold text-primary">KisanSetu Agronomic Engine</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed/40 text-on-secondary-fixed text-label-sm font-label-sm font-semibold">Verified Recommendation</span>
+</div>
+<span class="font-data-mono text-body-sm text-on-surface-variant">10:14 AM</span>
+</div>
+<!-- Structured Advice Text -->
+<div class="space-y-2.5 font-body-md text-body-md text-on-surface leading-relaxed">
+<p class="font-semibold text-primary">
+                    नमस्कार रमेशजी, तुमच्या वाशिम जिल्ह्यातील करंजा लाड (खसरा ४४/२A) च्या काळ्या कसदार जमिनीत Sentinel-2 उपग्रह आणि IMD हवामान अंदाजानुसार:
+                  </p>
+<div class="p-3 bg-surface-container-lowest rounded-xl border-l-4 border-secondary space-y-2">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5" data-icon="calendar_month">calendar_month</span>
+<p>
+<strong class="text-primary font-semibold">सर्वोत्तम पेरणी खिडकी:</strong> २४ जून ते ३ जुलै दरम्यान (किमान ७५-१०० मिमी मान्सून पाऊस पडल्यानंतरच पेरणी करा).
+                      </p>
+</div>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5" data-icon="agriculture">agriculture</span>
+<p>
+<strong class="text-primary font-semibold">ऑगस्ट कोरडा काळ (Dry Spell) उपाय:</strong> सोयाबीन (JS 335) सोबत तूर (BDN-711) आंतरपीक (४:२ किंवा ६:२ प्रमाणात) घ्या, ज्यामुळे तुरीची खोल मुळे जमिनीत ओलावा टिकवून ठेवतील आणि दुष्काळाचा फटका बसणार नाही.
+                      </p>
+</div>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5" data-icon="savings">savings</span>
+<p>
+<strong class="text-primary font-semibold">शासकीय योजना:</strong> सूक्ष्म-ठिबक सिंचन (Micro-Drip) वापरासाठी महाराष्ट्र शासनाचे ५५% अनुदान उपलब्ध आहे.
+                      </p>
+</div>
+</div>
+</div>
+<!-- TTS Audio Playback Strip -->
+<div class="p-3 rounded-xl bg-surface-container flex flex-wrap items-center justify-between gap-3 border border-outline-variant/30">
+<div class="flex items-center gap-3">
+<button aria-label="Play Marathi voice advisory" class="w-10 h-10 rounded-full bg-primary-container text-secondary-fixed flex items-center justify-center hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<div>
+<p class="font-label-md text-label-md text-primary font-bold">मराठीत ऐका (Listen in Marathi)</p>
+<span class="font-data-mono text-body-sm text-on-surface-variant">0:42 / 1:24 • AI Audio Voice Note</span>
+</div>
+</div>
+<!-- Waveform Mock -->
+<div class="flex items-center gap-1 h-6">
+<span class="w-1 h-3 bg-secondary rounded-full"></span>
+<span class="w-1 h-5 bg-secondary rounded-full"></span>
+<span class="w-1 h-2 bg-secondary rounded-full"></span>
+<span class="w-1 h-6 bg-secondary rounded-full animate-pulse"></span>
+<span class="w-1 h-4 bg-secondary rounded-full"></span>
+<span class="w-1 h-5 bg-secondary rounded-full"></span>
+<span class="w-1 h-3 bg-secondary rounded-full"></span>
+<span class="w-1 h-2 bg-outline-variant rounded-full"></span>
+<span class="w-1 h-4 bg-outline-variant rounded-full"></span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+</div>
+</div>
+<!-- Source Attribution & Trust Chips -->
+<div class="pt-2 border-t border-outline-variant/20">
+<span class="text-label-sm font-label-sm text-on-surface-variant block mb-2 font-medium">डेटा संदर्भ व विश्वासार्हता (Data Verification Sources):</span>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-primary font-data-mono text-body-sm border border-outline-variant/30">
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+                      ICAR-CRIDA Vidarbha Agro-Advisory Bulletin #42
+                    </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-primary font-data-mono text-body-sm border border-outline-variant/30">
+<span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim" data-icon="cloud_sync">cloud_sync</span>
+                      IMD Mausam 0.25° Gridded Rainfall Model (Washim)
+                    </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-primary font-data-mono text-body-sm border border-outline-variant/30">
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="radar">radar</span>
+                      Sentinel-2 L2A Soil Moisture: 0.24 m³/m³
+                    </span>
+</div>
+</div>
+</div>
+<!-- Quick prompt suggestion chips for farmer -->
+<div class="pt-1">
+<span class="text-label-sm font-label-sm text-on-surface-variant mb-2 block">संभाव्य प्रश्न (Suggested follow-ups):</span>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container border border-outline-variant/40 text-on-surface text-label-md font-label-md transition-all active:scale-[0.98] text-left">
+                    "खतांचे योग्य प्रमाण काय असावे?"
+                  </button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container border border-outline-variant/40 text-on-surface text-label-md font-label-md transition-all active:scale-[0.98] text-left">
+                    "तूर आंतरपिकासाठी बियाणे अनुदान कसे मिळवावे?"
+                  </button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container border border-outline-variant/40 text-on-surface text-label-md font-label-md transition-all active:scale-[0.98] text-left">
+                    "सोयाबीनवरील खोडमाशी (Stem Fly) नियंत्रण कसे करावे?"
+                  </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Chat Input Bar at Bottom (Voice First & Photos) -->
+<div class="p-4 bg-surface-container-lowest border-t border-outline-variant/20">
+<form class="flex items-center gap-2" onsubmit="event.preventDefault();">
+<!-- Attachment Button (Leaf Photo / Diagnostic) -->
+<button class="p-2.5 rounded-xl border border-outline-variant/30 hover:bg-surface-container text-on-surface-variant transition-colors" title="पीक पान फोटो पाठवा (Upload crop leaf disease photo)" type="button">
+<span class="material-symbols-outlined text-[22px]" data-icon="add_photo_alternate">add_photo_alternate</span>
+</button>
+<!-- Main Input Field -->
+<div class="relative flex-1">
+<input class="w-full h-12 pl-4 pr-12 rounded-xl bg-surface-container-low/50 border border-outline-variant/40 text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:border-primary focus:ring-2 focus:ring-secondary/30 transition-all" placeholder="तुमचा कृषी प्रश्न येथे विचारा किंवा बोला... (Ask your farming question or speak...)" type="text"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-outline-variant hover:text-primary transition-colors" title="Select Input Language" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="translate">translate</span>
+</button>
+</div>
+<!-- Voice Input Button (Voice-first in 9 languages) -->
+<button class="w-12 h-12 rounded-xl bg-secondary hover:bg-primary transition-colors flex items-center justify-center text-on-secondary shadow-md active:scale-95 group relative" title="Voice recording in Marathi" type="button">
+<span class="material-symbols-outlined text-[24px]" data-icon="mic" style="font-variation-settings: 'FILL' 1;">mic</span>
+<span class="absolute -top-1 -right-1 flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-fixed opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-secondary-fixed"></span>
+</span>
+</button>
+<!-- Send Button -->
+<button class="w-12 h-12 rounded-xl bg-primary-container hover:bg-primary transition-colors flex items-center justify-center text-on-primary shadow-sm active:scale-95" title="पाठवा (Send)" type="submit">
+<span class="material-symbols-outlined text-[20px]" data-icon="send">send</span>
+</button>
+</form>
+<div class="flex items-center justify-between mt-2 px-1 text-label-sm font-label-sm text-outline">
+<span>Press mic to speak in Marathi, Hindi or English</span>
+<span>Multimodal Gemini Agronomy Model v2.4</span>
+</div>
+</div>
+</section>
+<!-- ========================================================
+           RIGHT COLUMN: AGRONOMIC CARDS, WEATHER & HAZARDS (5 cols)
+           ======================================================== -->
+<section class="lg:col-span-5 space-y-6">
+<!-- PANEL A: CROP ADVICE CARDS (3 High-Value Actionable Guidance) -->
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-md text-body-lg font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="energy_savings_leaf">energy_savings_leaf</span>
+              Targeted Agronomic Intelligence
+            </h2>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-data-mono">Kharif '24</span>
+</div>
+<!-- Card 1: Sowing Window Optimization -->
+<div class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/30 shadow-sm space-y-3 hover:border-primary transition-colors">
+<div class="flex items-start justify-between">
+<div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed/40 text-on-secondary-fixed text-label-sm font-label-sm font-bold uppercase tracking-wider">
+                  Window Active
+                </span>
+<h3 class="font-headline-md text-body-lg font-bold text-primary mt-1">Sowing Window Optimization</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Optimal Sowing: <strong class="text-primary">24 Jun - 3 Jul</strong></p>
+</div>
+<div class="w-10 h-10 rounded-xl bg-secondary-container/40 text-on-secondary-container flex items-center justify-center font-bold font-data-mono">
+                68%
+              </div>
+</div>
+<!-- Soil Moisture Meter Bar -->
+<div>
+<div class="flex justify-between text-label-sm font-label-sm text-on-surface-variant mb-1">
+<span>Soil Moisture Status: <strong class="text-secondary font-semibold">Favorable</strong></span>
+<span class="font-data-mono">68% saturation</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 68%;"></div>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-outline">
+              Accumulated rainfall reached 82mm across Karanja Lad. Conditions are optimal for seed drills.
+            </p>
+</div>
+<!-- Card 2: Pest & Disease Alert -->
+<div class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/30 shadow-sm space-y-2.5 hover:border-outline transition-colors">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-body-lg font-bold text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-tertiary-fixed-dim" data-icon="bug_report">bug_report</span>
+                Pest &amp; Disease Advisory
+              </h3>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-semibold text-label-sm font-label-sm">
+                Low-Moderate Risk
+              </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+<strong class="font-semibold text-primary">Stem Fly &amp; Semilooper Risk:</strong> Early germination humidity promotes larval growth.
+            </p>
+<div class="p-2.5 rounded-xl bg-surface-container-low border border-outline-variant/30 flex items-center gap-2 text-body-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="eco">eco</span>
+<span><strong>Preventive spray:</strong> Neem oil (Azadirachtin 10000 ppm) @ 5ml/L water at 15 DAS.</span>
+</div>
+</div>
+<!-- Card 3: Climate-Resilient Technique -->
+<div class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/30 shadow-sm space-y-2 hover:border-primary transition-colors">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary" data-icon="forest">forest</span>
+<h3 class="font-headline-md text-body-lg font-bold text-primary">Tur (Pigeonpea) 4:2 Intercropping</h3>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed/40 text-on-secondary-fixed font-bold text-label-sm font-label-sm">
+                Mitigates August Dry Spell
+              </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Deep taproots of BDN-711 access capillary water during mid-monsoon breaks, preventing catastrophic Kharif yield failure.
+            </p>
+<div class="flex items-center justify-between pt-1 text-label-sm font-label-sm">
+<span class="text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="trending_up">trending_up</span>
+                +₹18,500/acre net income potential
+              </span>
+<span class="font-data-mono text-outline">CRIDA Model Validated</span>
+</div>
+</div>
+</div>
+<!-- PANEL B: 5-DAY HYPERLOCAL WEATHER & SOIL STRIP (Washim / Karanja Lad) -->
+<div class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/30 shadow-sm space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="thermostat">thermostat</span>
+<h3 class="font-headline-md text-body-lg font-bold text-primary">5-Day Hyperlocal Weather Strip</h3>
+</div>
+<span class="text-label-sm font-label-sm font-data-mono text-on-surface-variant">IMD Grid: 20.48°N, 77.48°E</span>
+</div>
+<!-- 5-Day Horizontal Segmented Grid -->
+<div class="grid grid-cols-5 gap-2 text-center">
+<!-- Day 1: Today -->
+<div class="p-2.5 rounded-xl bg-surface-container border border-outline-variant/40 flex flex-col items-center justify-between min-h-[120px]">
+<span class="font-label-sm text-label-sm font-bold text-primary">Today</span>
+<span class="material-symbols-outlined text-[24px] text-outline" data-icon="partly_cloudy_day">partly_cloudy_day</span>
+<div>
+<span class="font-data-mono font-bold text-body-sm text-on-surface block">31° / 24°</span>
+<span class="text-label-sm text-label-sm text-secondary font-semibold">18 mm</span>
+</div>
+</div>
+<!-- Day 2: Heavy Rain -->
+<div class="p-2.5 rounded-xl bg-surface-container-high border border-outline-variant/60 flex flex-col items-center justify-between min-h-[120px] ring-1 ring-secondary">
+<span class="font-label-sm text-label-sm font-bold text-primary">Day 2</span>
+<span class="material-symbols-outlined text-[24px] text-secondary" data-icon="rainy">rainy</span>
+<div>
+<span class="font-data-mono font-bold text-body-sm text-on-surface block">32° / 23°</span>
+<span class="text-label-sm text-label-sm text-secondary font-bold">28 mm</span>
+</div>
+</div>
+<!-- Day 3: Showers -->
+<div class="p-2.5 rounded-xl bg-surface-container border border-outline-variant/40 flex flex-col items-center justify-between min-h-[120px]">
+<span class="font-label-sm text-label-sm font-bold text-primary">Day 3</span>
+<span class="material-symbols-outlined text-[24px] text-outline" data-icon="grain">grain</span>
+<div>
+<span class="font-data-mono font-bold text-body-sm text-on-surface block">29° / 22°</span>
+<span class="text-label-sm text-label-sm text-secondary font-semibold">12 mm</span>
+</div>
+</div>
+<!-- Day 4: Drizzle -->
+<div class="p-2.5 rounded-xl bg-surface-container border border-outline-variant/40 flex flex-col items-center justify-between min-h-[120px]">
+<span class="font-label-sm text-label-sm font-bold text-primary">Day 4</span>
+<span class="material-symbols-outlined text-[24px] text-outline-variant" data-icon="cloud">cloud</span>
+<div>
+<span class="font-data-mono font-bold text-body-sm text-on-surface block">33° / 24°</span>
+<span class="text-label-sm text-label-sm text-on-surface-variant font-medium">2 mm</span>
+</div>
+</div>
+<!-- Day 5: Dry Spell Alert -->
+<div class="p-2.5 rounded-xl bg-tertiary-fixed/30 border border-tertiary-fixed flex flex-col items-center justify-between min-h-[120px]">
+<span class="font-label-sm text-label-sm font-bold text-tertiary">Day 5</span>
+<span class="material-symbols-outlined text-[24px] text-tertiary-fixed-dim" data-icon="wb_sunny">wb_sunny</span>
+<div>
+<span class="font-data-mono font-bold text-body-sm text-tertiary block">34° / 25°</span>
+<span class="text-label-sm text-label-sm text-on-tertiary-container font-bold">Dry spell</span>
+</div>
+</div>
+</div>
+</div>
+<!-- PANEL C: MULTI-HAZARD CRISIS ALERTS & DISPATCH HUB -->
+<div class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/30 shadow-sm space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error" data-icon="warning">warning</span>
+<h3 class="font-headline-md text-body-lg font-bold text-primary">Active Agronomic &amp; Meteorological Alerts</h3>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-data-mono text-label-sm font-label-sm font-bold">
+              3 Active
+            </span>
+</div>
+<div class="space-y-3">
+<!-- Alert 1: Heatwave Warning -->
+<div class="p-3.5 rounded-xl bg-surface-container-low border-l-4 border-tertiary-fixed-dim border-t border-r border-b border-outline-variant/30 space-y-2">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-lg font-label-lg font-bold text-primary">Heatwave Warning (Late Sowing Spike)</span>
+<span class="px-2 py-0.2 rounded bg-tertiary-fixed text-on-tertiary-fixed text-label-sm font-label-sm font-semibold">Amber / Moderate</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                    Temperatures projected &gt;38°C on July 8. Ensure mulch cover to shield vulnerable germinating seeds.
+                  </p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="text-label-sm font-label-sm text-outline">Target: Karanja Lad blocks</span>
+<button class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary text-label-sm font-label-sm font-semibold transition-colors border border-outline-variant/40">
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="send_to_mobile">send_to_mobile</span>
+                  Send by SMS or WhatsApp
+                </button>
+</div>
+</div>
+<!-- Alert 2: Delayed Monsoon Intermission -->
+<div class="p-3.5 rounded-xl bg-surface-container-low border-l-4 border-tertiary-fixed-dim border-t border-r border-b border-outline-variant/30 space-y-2">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-lg font-label-lg font-bold text-primary">Delayed Monsoon Intermission (12-Day Dry Spell)</span>
+<span class="px-2 py-0.2 rounded bg-tertiary-fixed text-on-tertiary-fixed text-label-sm font-label-sm font-semibold">Amber / Watch</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                    Dry spell expected mid-August during pod-setting stage. Intercropping with Tur recommended.
+                  </p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="text-label-sm font-label-sm text-outline">Target: Vidarbha Sub-divisions</span>
+<button class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary text-label-sm font-label-sm font-semibold transition-colors border border-outline-variant/40">
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="send_to_mobile">send_to_mobile</span>
+                  Send by SMS or WhatsApp
+                </button>
+</div>
+</div>
+<!-- Alert 3: Spodoptera Outbreak (Red High Alert) -->
+<div class="p-3.5 rounded-xl bg-error-container/30 border-l-4 border-error border-t border-r border-b border-outline-variant/30 space-y-2">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-lg font-label-lg font-bold text-error">Spodoptera (Fall Armyworm) Outbreak</span>
+<span class="px-2 py-0.2 rounded bg-error text-on-error text-label-sm font-label-sm font-bold">Red / High Alert</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                    Reported in 3 talukas within 25km. Inspect leaf underside at dawn and deploy pheromone traps @ 5/acre.
+                  </p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="text-label-sm font-label-sm text-error font-semibold">Radius: 25 km proximity</span>
+<button class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-error text-on-error text-label-sm font-label-sm font-bold transition-all hover:bg-error/90 active:scale-95 shadow-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="emergency_share">emergency_share</span>
+                  Send by SMS or WhatsApp
+                </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- FOOTER & REGULATORY STRIP -->
+<footer class="mt-auto bg-surface-container-low border-t border-outline-variant/30 py-4 px-6">
+<div class="max-w-[1600px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-body-sm font-body-sm text-on-surface-variant">
+<!-- Regulatory & Legal Badges -->
+<div class="flex items-center flex-wrap gap-4">
+<span class="flex items-center gap-1.5 font-semibold text-primary">
+<span class="material-symbols-outlined text-[18px] text-secondary" data-icon="policy">policy</span>
+          DPDP Act 2023 Compliant (Consent Ref: #KS-2024-MH-4029)
+        </span>
+<span class="text-outline-variant">•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="support_agent">support_agent</span>
+          ICAR Kisan Call Center Toll-Free: <strong class="text-primary font-bold">1800-180-1551</strong>
+</span>
+</div>
+<!-- Live Pipeline & Node Information -->
+<div class="flex items-center gap-4 text-label-sm font-label-sm font-data-mono">
+<span>Sentinel-2 L2A BOA Reflectance • IMD Weather Grid v3.1</span>
+<span class="text-outline-variant">•</span>
+<span class="text-secondary font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+          KisanSetu Vidarbha Agro-Node Online
+        </span>
+</div>
+</div>
+</footer>
+<!-- Light Vanilla Script for Interactive Polish -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Toggle Universal Audio button state indicator
+      const ttsBtn = document.getElementById('tts-global-toggle');
+      if (ttsBtn) {
+        ttsBtn.addEventListener('click', () => {
+          const isPressed = ttsBtn.classList.toggle('bg-secondary-fixed/40');
+          ttsBtn.classList.toggle('border-secondary');
+        });
+      }
+    });
+  </script>
+</body></html>

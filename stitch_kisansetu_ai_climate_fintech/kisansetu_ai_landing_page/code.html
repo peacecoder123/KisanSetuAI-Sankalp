@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KisanSetu AI — Climate Risk and Credit Intelligence Platform</title>
+<!-- Google Fonts: Sora & Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Sora:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with CDN plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration Verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-on-surface": "#e9f3ec",
+            "error": "#ba1a1a",
+            "on-error": "#ffffff",
+            "tertiary": "#2d1e00",
+            "surface-variant": "#dbe5de",
+            "inverse-surface": "#29322e",
+            "secondary": "#1f6d00",
+            "on-tertiary-container": "#cd9517",
+            "tertiary-fixed": "#ffdea8",
+            "outline": "#717974",
+            "on-secondary-fixed": "#052100",
+            "surface-dim": "#d2ddd5",
+            "primary-fixed": "#beedd7",
+            "tertiary-fixed-dim": "#fabc41",
+            "surface-container-high": "#e0ebe3",
+            "on-secondary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "secondary-fixed-dim": "#7fdc5c",
+            "tertiary-container": "#493200",
+            "on-primary-fixed": "#002116",
+            "on-surface": "#141d19",
+            "surface-bright": "#f2fcf4",
+            "on-primary-fixed-variant": "#234f3f",
+            "primary-container": "#0f3d2e",
+            "background": "#f2fcf4",
+            "primary": "#00261a",
+            "surface": "#f2fcf4",
+            "secondary-container": "#9afa75",
+            "on-secondary-container": "#227400",
+            "secondary-fixed": "#9afa75",
+            "surface-tint": "#3b6756",
+            "on-error-container": "#93000a",
+            "surface-container-low": "#ecf6ef",
+            "on-secondary-fixed-variant": "#165200",
+            "surface-container": "#e6f0e9",
+            "on-background": "#141d19",
+            "on-primary-container": "#7ba894",
+            "primary-fixed-dim": "#a2d1bb",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "outline-variant": "#c0c8c3",
+            "inverse-primary": "#a2d1bb",
+            "on-primary": "#ffffff",
+            "on-surface-variant": "#414944",
+            "surface-container-highest": "#dbe5de",
+            "error-container": "#ffdad6",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-fixed": "#271900"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-mobile": "1rem",
+            "space-lg": "1.5rem",
+            "gutter": "1.5rem",
+            "margin-mobile": "1rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "margin": "2rem"
+          },
+          "fontFamily": {
+            "display-lg-mobile": ["Sora"],
+            "label-sm": ["Inter"],
+            "headline-xl": ["Sora"],
+            "body-sm": ["Inter"],
+            "display-lg": ["Sora"],
+            "label-md": ["Inter"],
+            "body-md": ["Inter"],
+            "data-mono": ["Inter"],
+            "label-lg": ["Inter"],
+            "body-xl": ["Inter"],
+            "headline-lg": ["Sora"],
+            "headline-md": ["Sora"],
+            "headline-xl-mobile": ["Sora"],
+            "body-lg": ["Inter"]
+          },
+          "fontSize": {
+            "display-lg-mobile": ["36px", { lineHeight: "44px", letterSpacing: "-0.01em", fontWeight: "700" }],
+            "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "600" }],
+            "headline-xl": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600" }],
+            "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }],
+            "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600" }],
+            "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+            "data-mono": ["14px", { lineHeight: "20px", fontWeight: "500" }],
+            "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }],
+            "body-xl": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+            "headline-lg": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+            "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+            "headline-xl-mobile": ["26px", { lineHeight: "34px", letterSpacing: "-0.01em", fontWeight: "600" }],
+            "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+
+    /* Subtle Satellite Radar Scan Line Effect */
+    @keyframes radarSweep {
+      0% { transform: translateY(-100%); opacity: 0; }
+      20% { opacity: 0.8; }
+      80% { opacity: 0.8; }
+      100% { transform: translateY(320px); opacity: 0; }
+    }
+    .animate-radar {
+      animation: radarSweep 4.5s ease-in-out infinite;
+    }
+
+    /* Ambient Float for telemetry chips */
+    @keyframes floatChip {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+    .animate-float-slow {
+      animation: floatChip 5s ease-in-out infinite;
+    }
+    .animate-float-delayed {
+      animation: floatChip 6s ease-in-out 1.5s infinite;
+    }
+    .animate-float-fast {
+      animation: floatChip 4.5s ease-in-out 0.8s infinite;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed min-h-screen flex flex-col font-body-md text-body-md">
+<!-- 1. STICKY TOP NAVIGATION -->
+<header class="sticky top-0 z-50 w-full bg-surface/85 backdrop-blur-md shadow-sm border-b border-outline-variant/30 transition-all duration-200">
+<div class="w-full max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between">
+<!-- Brand & Official Logo -->
+<div class="flex items-center gap-6">
+<a class="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-secondary-fixed rounded-lg" href="#">
+<img alt="KisanSetu AI" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WyYJ6vLrJcC9UBDWH0WgNSY8VF3nYZoKFll6I-vAR6h89ktXSWMq1h5UyRha7ixm-jrAzWjDHZYfERwHS1it7t7ofORmRRl46zW0kbDBTW4CZ8Uz66A3phbV7Svwf4WzI272vhKWBsDoUVfaRVIPi8ilDZUAlnS5StmbD25xLXY4NEkyVAyTQ5mxWaLSk9Lxg_Xdthl7scUoajlvE0QEzzTck0Wbn-j41cM_BMkw4m"/>
+</a>
+<!-- Desktop Navigation Links -->
+<nav class="hidden lg:flex items-center gap-6 ml-4">
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-lg font-label-lg" href="#platform">Platform</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-lg font-label-lg" href="#how-it-works">How it works</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-lg font-label-lg" href="#lenders">Lenders</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-lg font-label-lg" href="#strategic-pillars">About</a>
+</nav>
+</div>
+<!-- Right Action Cluster: Persona Pill + Primary Button -->
+<div class="flex items-center gap-3 md:gap-4">
+<!-- Persona Switcher Pill Control -->
+<div aria-label="Persona switcher" class="bg-surface-container border border-outline-variant/40 p-1 rounded-full flex items-center gap-1 text-label-sm font-label-sm shadow-inner" role="group">
+<button class="persona-tab px-3 py-1.5 rounded-full text-on-surface-variant hover:text-primary transition-colors" id="persona-farmer" onclick="setPersona('farmer')" type="button">
+            Farmer
+          </button>
+<button class="persona-tab px-3.5 py-1.5 rounded-full bg-primary-container text-primary-fixed font-semibold shadow-sm transition-all" id="persona-lender" onclick="setPersona('lender')" type="button">
+            Lender
+          </button>
+<button class="persona-tab px-3 py-1.5 rounded-full text-on-surface-variant hover:text-primary transition-colors" id="persona-insurer" onclick="setPersona('insurer')" type="button">
+            Insurer
+          </button>
+</div>
+<!-- Primary Action Button -->
+<a class="hidden sm:inline-flex items-center gap-2 bg-secondary-fixed hover:bg-secondary-fixed-dim text-on-secondary-fixed font-label-lg text-label-lg font-bold px-5 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-all duration-150 active:scale-[0.98]" href="#assess-farm">
+<span class="material-symbols-outlined text-[18px]">satellite_alt</span>
+<span>Assess a farm</span>
+</a>
+</div>
+</div>
+</header>
+<!-- MAIN CANVAS -->
+<main class="flex-grow">
+<!-- 2. HERO SECTION -->
+<section class="relative pt-12 md:pt-20 pb-16 md:pb-24 overflow-hidden border-b border-outline-variant/20">
+<!-- Ambient Field Glows -->
+<div class="absolute -top-32 -left-32 w-96 h-96 bg-secondary-fixed/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-1/2 right-0 w-[500px] h-[500px] bg-primary-fixed/25 rounded-full blur-3xl pointer-events-none"></div>
+<div class="w-full max-w-[1600px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+<!-- Left Hero Narrative (Col 1-7) -->
+<div class="lg:col-span-7 space-y-6 md:space-y-8 z-10">
+<!-- Micro-badge / Indicator -->
+<div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-surface-container-high border border-outline-variant/50 text-primary">
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-fixed opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+</span>
+<span class="text-label-md font-label-md tracking-wider uppercase text-on-surface-variant font-semibold">Copernicus Sentinel-2 &amp; XGBoost Engine Live</span>
+</div>
+<!-- Large Bold Headline -->
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary tracking-tight font-extrabold max-w-2xl leading-[1.12]">
+            Bridging farmers and lenders with climate intelligence
+          </h1>
+<!-- One-line Subhead -->
+<p class="font-body-xl text-body-lg md:text-body-xl text-on-surface-variant max-w-2xl leading-relaxed">
+            Empowering Indian agriculture with Sentinel-2 satellite data, AI-driven climate credit scoring, and multilingual agronomic advisory.
+          </p>
+<!-- Dual CTA Buttons & Trust Indicators -->
+<div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+<a class="inline-flex items-center justify-center gap-3 bg-secondary-fixed hover:bg-secondary-fixed-dim text-on-secondary-fixed font-label-lg text-label-lg font-bold px-7 py-3.5 rounded-xl shadow-sm hover:shadow-md transition-all active:scale-[0.98]" href="#assess-farm">
+<span class="material-symbols-outlined text-[20px]">radar</span>
+<span>Assess a farm</span>
+</a>
+<a class="inline-flex items-center justify-center gap-2.5 bg-surface-container-low hover:bg-surface-container text-primary font-label-lg text-label-lg font-semibold px-6 py-3.5 rounded-xl border border-outline-variant/50 hover:border-outline transition-all active:scale-[0.98]" href="#how-it-works">
+<span class="material-symbols-outlined text-[20px]">play_circle</span>
+<span>Start guided demo</span>
+</a>
+</div>
+<!-- Proof Metrics Bar -->
+<div class="pt-6 grid grid-cols-3 gap-4 border-t border-outline-variant/30 max-w-xl">
+<div>
+<div class="font-headline-md text-headline-md font-bold text-primary">140M+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Parcels Mapped</div>
+</div>
+<div>
+<div class="font-headline-md text-headline-md font-bold text-primary">10m</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Spectral Resolution</div>
+</div>
+<div>
+<div class="font-headline-md text-headline-md font-bold text-primary">9 Langs</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Voice Advisory</div>
+</div>
+</div>
+</div>
+<!-- Right Hero Visual: Stylized Satellite Farm Field (Col 8-12) -->
+<div class="lg:col-span-5 relative flex justify-center">
+<div class="relative w-full max-w-[520px] aspect-[4/4.2] rounded-3xl p-4 bg-surface-container-low border border-outline-variant/40 shadow-xl overflow-hidden">
+<!-- Map Grid & Contours Container -->
+<div class="relative w-full h-full rounded-2xl overflow-hidden bg-primary-container border border-outline/30 flex items-center justify-center">
+<!-- Abstract NDVI Mosaic Parcels (SVG Vector Graphic) -->
+<svg class="w-full h-full object-cover opacity-90 select-none" viewbox="0 0 500 500">
+<!-- Parcel Bounding Tiles with multi-tone green and amber -->
+<polygon fill="#0F3D2E" opacity="0.85" points="20,30 210,10 240,180 40,190" stroke="#7CD959" stroke-width="1.5"></polygon>
+<polygon fill="#227400" opacity="0.9" points="240,180 470,140 450,290 220,320" stroke="#7CD959" stroke-width="1.5"></polygon>
+<polygon fill="#7CD959" opacity="0.8" points="210,10 480,20 470,140 240,180" stroke="#9afa75" stroke-width="1.5"></polygon>
+<polygon fill="#3A9E48" opacity="0.85" points="40,190 220,320 180,470 10,420" stroke="#7CD959" stroke-width="1.5"></polygon>
+<polygon fill="#F5B83D" opacity="0.75" points="220,320 450,290 480,480 180,470" stroke="#ffdea8" stroke-width="1.5"></polygon>
+<polygon fill="#1f6d00" opacity="0.6" points="20,30 240,180 120,280"></polygon>
+<!-- Delicate Topographic Contour Wave Lines -->
+<path d="M-20,100 Q150,60 260,110 T520,70" fill="none" opacity="0.35" stroke="#beedd7" stroke-dasharray="4,4" stroke-width="0.8"></path>
+<path d="M-20,180 Q180,140 290,200 T520,160" fill="none" opacity="0.35" stroke="#beedd7" stroke-width="0.8"></path>
+<path d="M-20,260 Q120,220 280,300 T520,240" fill="none" opacity="0.35" stroke="#beedd7" stroke-dasharray="3,3" stroke-width="0.8"></path>
+<path d="M-20,350 Q160,310 320,390 T520,330" fill="none" opacity="0.35" stroke="#beedd7" stroke-width="0.8"></path>
+<path d="M-20,440 Q200,400 350,470 T520,410" fill="none" opacity="0.35" stroke="#beedd7" stroke-width="0.8"></path>
+<!-- Coordinate Markings -->
+<text fill="#beedd7" font-family="Inter" font-size="10" opacity="0.75" x="30" y="45">KASRAWAD TESHIL • 22.134° N, 75.602° E</text>
+<text fill="#141d19" font-family="Inter" font-size="9" font-weight="bold" x="320" y="470">SENTINEL-2 B4/B8 COMPOSITE</text>
+</svg>
+<!-- Radar Scanning Line Effect Overlay -->
+<div class="absolute inset-x-0 h-24 bg-gradient-to-b from-transparent via-secondary-fixed/30 to-transparent animate-radar pointer-events-none"></div>
+<!-- Top Left Heads-up Satellite Meta Chip -->
+<div class="absolute top-4 left-4 bg-primary/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-primary-fixed/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed text-sm">satellite_alt</span>
+<span class="text-label-sm font-label-sm text-primary-fixed font-data-mono">Pass: 09:42 IST • Clear Sky</span>
+</div>
+<!-- Floating Glass Telemetry Chip 1: NDVI (Top Right) -->
+<div class="absolute top-12 right-4 animate-float-slow bg-surface-bright/90 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-white shadow-lg flex items-center gap-2.5">
+<span class="h-3 w-3 rounded-full bg-[#3A9E48] ring-4 ring-[#7CD959]/30"></span>
+<div>
+<div class="text-[10px] font-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Vegetation Index</div>
+<div class="font-headline-md text-headline-md font-bold text-primary flex items-baseline gap-1 font-data-mono">
+                    NDVI 0.71
+                    <span class="text-xs text-secondary font-semibold font-body-sm">Optimal</span>
+</div>
+</div>
+</div>
+<!-- Floating Glass Telemetry Chip 2: Rainfall (Middle Left) -->
+<div class="absolute bottom-28 left-4 animate-float-delayed bg-surface-bright/90 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-white shadow-lg flex items-center gap-3">
+<div class="w-8 h-8 rounded-xl bg-tertiary-fixed/40 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[18px]">water_drop</span>
+</div>
+<div>
+<div class="text-[10px] font-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Monsoon Deficit</div>
+<div class="font-headline-md text-headline-md font-bold text-tertiary flex items-baseline gap-1.5 font-data-mono">
+                    Rainfall -18%
+                    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-tertiary-fixed font-semibold text-on-tertiary-fixed">Amber Alert</span>
+</div>
+</div>
+</div>
+<!-- Floating Glass Telemetry Chip 3: Resilience Score (Bottom Right) -->
+<div class="absolute bottom-6 right-4 animate-float-fast bg-primary-container text-white px-4 py-3 rounded-2xl border border-primary-fixed/30 shadow-2xl flex items-center gap-3.5">
+<div class="w-10 h-10 rounded-xl bg-secondary-fixed/20 border border-secondary-fixed/40 flex items-center justify-center text-secondary-fixed">
+<span class="material-symbols-outlined text-[22px]">verified</span>
+</div>
+<div>
+<div class="text-[10px] font-label-sm text-primary-fixed uppercase tracking-wider font-semibold">XGBoost Credit Trust</div>
+<div class="font-headline-md text-headline-md font-bold text-white flex items-baseline gap-2 font-data-mono">
+                    Resilience 78
+                    <span class="text-xs bg-secondary-fixed text-on-secondary-fixed px-2 py-0.5 rounded-full font-bold">Tier A-1</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. DISTINGUISHED QUOTE BLOCK (VERBATIM TEXT REQUIREMENT) -->
+<section class="py-12 md:py-16 bg-surface-container-low border-b border-outline-variant/30">
+<div class="w-full max-w-4xl mx-auto px-6">
+<div class="relative bg-surface p-8 md:p-12 rounded-2xl border border-outline-variant/30 border-l-[6px] border-l-secondary-fixed-dim shadow-sm">
+<!-- Decorative Quotation Glyph -->
+<span class="material-symbols-outlined absolute top-6 right-6 text-5xl md:text-6xl text-primary/10 select-none">
+            format_quote
+          </span>
+<div class="relative z-10 space-y-4">
+<p class="font-headline-md md:font-headline-lg text-headline-md md:text-headline-lg text-primary font-semibold leading-relaxed tracking-tight">
+              “Smallholder farmers (86% of Indian farm households) lack access to affordable credit and climate-resilient advisory because lenders can't assess their climate risk and creditworthiness. Climate shocks then drive defaults, pushing farmers into debt cycles and lenders away from agriculture.”
+            </p>
+<div class="pt-2 flex items-center gap-3 text-on-surface-variant font-label-md text-label-md">
+<span class="h-1.5 w-1.5 rounded-full bg-secondary"></span>
+<span>Contextualized from NSSO 77th Round Agricultural Household Survey &amp; NABARD Smallholder Inclusion Mandate</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. "HOW IT WORKS" SECTION (4 Connected Cards with Flow Connectors) -->
+<section class="py-16 md:py-24 bg-surface" id="how-it-works">
+<div class="w-full max-w-[1600px] mx-auto px-6">
+<!-- Section Header -->
+<div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high text-primary text-label-sm font-label-sm font-bold uppercase tracking-wider">
+            Operational Blueprint
+          </div>
+<h2 class="font-headline-xl md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary font-bold">
+            How KisanSetu AI Works
+          </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+            From Copernicus orbital telemetry to bank branch disbursement — a transparent, non-repudiable credit pipeline.
+          </p>
+</div>
+<!-- 4 Connected Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+<!-- Step 1 Card -->
+<div class="group relative bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/40 hover:border-secondary-fixed transition-all duration-200 shadow-sm hover:shadow-md flex flex-col justify-between">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center font-headline-md text-headline-md font-bold text-primary">01</span>
+<span class="material-symbols-outlined text-secondary text-2xl">satellite_alt</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary font-semibold">Climate risk scoring</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Sentinel-2 satellite observation, hyper-local soil moisture, and IMD weather hazard indices synthesized into dynamic parcel-level stress telemetry.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/20 flex items-center gap-2 text-label-sm font-label-sm text-secondary font-semibold">
+<span>Multi-spectral bands B2, B4, B8</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+<!-- Step 2 Card -->
+<div class="group relative bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/40 hover:border-secondary-fixed transition-all duration-200 shadow-sm hover:shadow-md flex flex-col justify-between">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center font-headline-md text-headline-md font-bold text-primary">02</span>
+<span class="material-symbols-outlined text-secondary text-2xl">fingerprint</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary font-semibold">Agri-Credit Passport</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Cryptographically verifiable digital score &amp; dynamic risk tiering for transparent underwriting, removing informal middlemen collaterals.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/20 flex items-center gap-2 text-label-sm font-label-sm text-secondary font-semibold">
+<span>Non-repudiable ledger tokens</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+<!-- Step 3 Card -->
+<div class="group relative bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/40 hover:border-secondary-fixed transition-all duration-200 shadow-sm hover:shadow-md flex flex-col justify-between">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center font-headline-md text-headline-md font-bold text-primary">03</span>
+<span class="material-symbols-outlined text-secondary text-2xl">record_voice_over</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary font-semibold">Multilingual advisory</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                AI-powered localized crop advice in 9 Indian languages delivered through voice, SMS, and WhatsApp directly to marginal farmer phones.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/20 flex items-center gap-2 text-label-sm font-label-sm text-secondary font-semibold">
+<span>Hindi, Marathi, Telugu + 6 more</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+<!-- Step 4 Card -->
+<div class="group relative bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/40 hover:border-secondary-fixed transition-all duration-200 shadow-sm hover:shadow-md flex flex-col justify-between">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center font-headline-md text-headline-md font-bold text-primary">04</span>
+<span class="material-symbols-outlined text-secondary text-2xl">finance_mode</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary font-semibold">Lender dashboard</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Portfolio-level climate stress testing, automated parametric loan pricing, and early warning default mitigation for institutional banks.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/20 flex items-center gap-2 text-label-sm font-label-sm text-secondary font-semibold">
+<span>KCC &amp; PSL automated parity</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. STRATEGIC PILLARS SECTION (Horizontal Strip of 5 Cards / Badges) -->
+<section class="py-16 bg-surface-container-low border-y border-outline-variant/30" id="strategic-pillars">
+<div class="w-full max-w-[1600px] mx-auto px-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+<div>
+<span class="text-label-sm font-label-sm text-secondary font-bold uppercase tracking-wider">Architecture Benchmarks</span>
+<h2 class="font-headline-lg text-headline-lg text-primary font-bold mt-1">Five Strategic Pillars</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+            Built strictly for the socio-geographic reality of Indian agro-climatic zones and financial inclusion mandates.
+          </p>
+</div>
+<!-- 5 Cards Horizontal Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+<!-- Pillar 1: Innovation -->
+<div class="bg-surface rounded-2xl p-5 border border-outline-variant/40 hover:border-outline transition-all duration-150 flex flex-col justify-between shadow-xs">
+<div class="space-y-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">psychology</span>
+<span class="font-label-lg text-label-lg font-bold text-primary">Innovation</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Edge ML on Sentinel-2 earth observation &amp; XGBoost credit risk fusion.
+              </p>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/20 text-label-sm font-label-sm text-primary font-data-mono">
+              Hyperspectral AI
+            </div>
+</div>
+<!-- Pillar 2: Feasibility -->
+<div class="bg-surface rounded-2xl p-5 border border-outline-variant/40 hover:border-outline transition-all duration-150 flex flex-col justify-between shadow-xs">
+<div class="space-y-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">flash_on</span>
+<span class="font-label-lg text-label-lg font-bold text-primary">Feasibility</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Instant onboarding with zero hardware cost via land survey numbers.
+              </p>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/20 text-label-sm font-label-sm text-primary font-data-mono">
+              Zero IoT Capex
+            </div>
+</div>
+<!-- Pillar 3: Scalability -->
+<div class="bg-surface rounded-2xl p-5 border border-outline-variant/40 hover:border-outline transition-all duration-150 flex flex-col justify-between shadow-xs">
+<div class="space-y-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">public</span>
+<span class="font-label-lg text-label-lg font-bold text-primary">Scalability</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Pan-India multi-crop coverage across 140M+ smallholder parcels.
+              </p>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/20 text-label-sm font-label-sm text-primary font-data-mono">
+              Pan-India Grid
+            </div>
+</div>
+<!-- Pillar 4: Impact -->
+<div class="bg-surface rounded-2xl p-5 border border-outline-variant/40 hover:border-outline transition-all duration-150 flex flex-col justify-between shadow-xs">
+<div class="space-y-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">trending_up</span>
+<span class="font-label-lg text-label-lg font-bold text-primary">Impact</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                24% reduction in climate-driven defaults and 3.2x higher formal credit access.
+              </p>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/20 text-label-sm font-label-sm text-primary font-data-mono">
+              3.2x Credit Uplift
+            </div>
+</div>
+<!-- Pillar 5: Sponsor Fit -->
+<div class="bg-surface rounded-2xl p-5 border border-outline-variant/40 hover:border-outline transition-all duration-150 flex flex-col justify-between shadow-xs">
+<div class="space-y-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">account_balance</span>
+<span class="font-label-lg text-label-lg font-bold text-primary">Sponsor fit</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Aligned with RBI Priority Sector Lending (PSL) &amp; Agri-Infra initiatives.
+              </p>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/20 text-label-sm font-label-sm text-primary font-data-mono">
+              RBI PSL Compliant
+            </div>
+</div>
+</div>
+</div>
+</section>
+<!-- LIVE CONSOLE CALL-TO-ACTION BANNER -->
+<section class="py-16 md:py-20 bg-surface" id="assess-farm">
+<div class="w-full max-w-[1600px] mx-auto px-6">
+<div class="bg-primary-container text-white rounded-3xl p-8 md:p-14 relative overflow-hidden shadow-2xl">
+<div class="relative z-10 max-w-2xl space-y-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-fixed/20 text-secondary-fixed text-label-sm font-label-sm font-bold tracking-wide">
+<span class="material-symbols-outlined text-sm">explore</span>
+              Interactive Soil &amp; Credit Ledger
+            </div>
+<h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl font-bold text-white tracking-tight">
+              Ready to evaluate risk for your agricultural portfolio?
+            </h2>
+<p class="font-body-lg text-body-lg text-primary-fixed leading-relaxed">
+              Connect a survey number, Khasra reference, or coordinate bounding box to generate an instant Agri-Credit Passport with historical drought and flood telemetry.
+            </p>
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+<a class="inline-flex items-center justify-center gap-2.5 bg-secondary-fixed hover:bg-secondary-fixed-dim text-on-secondary-fixed font-label-lg text-label-lg font-bold px-7 py-3.5 rounded-xl shadow-md transition-all active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]">add_location_alt</span>
+<span>Connect Land Parcel</span>
+</a>
+<a class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white font-label-lg text-label-lg font-semibold px-6 py-3.5 rounded-xl border border-white/20 transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">description</span>
+<span>View Sample Underwriting Ledger</span>
+</a>
+</div>
+</div>
+<!-- Abstract Decorative Radar Rings in Background -->
+<div class="absolute -right-20 -bottom-20 w-96 h-96 border border-white/10 rounded-full pointer-events-none"></div>
+<div class="absolute -right-40 -bottom-40 w-[540px] h-[540px] border border-white/5 rounded-full pointer-events-none"></div>
+<div class="absolute right-12 top-12 opacity-10 pointer-events-none hidden md:block">
+<span class="material-symbols-outlined text-[160px]">radar</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- 6. CLEAN PROFESSIONAL FOOTER -->
+<footer class="bg-surface-container-high border-t border-outline-variant/40 pt-16 pb-12 text-on-surface">
+<div class="w-full max-w-[1600px] mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-outline-variant/30">
+<!-- Brand / Identity -->
+<div class="lg:col-span-2 space-y-4">
+<img alt="KisanSetu AI" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WyYJ6vLrJcC9UBDWH0WgNSY8VF3nYZoKFll6I-vAR6h89ktXSWMq1h5UyRha7ixm-jrAzWjDHZYfERwHS1it7t7ofORmRRl46zW0kbDBTW4CZ8Uz66A3phbV7Svwf4WzI272vhKWBsDoUVfaRVIPi8ilDZUAlnS5StmbD25xLXY4NEkyVAyTQ5mxWaLSk9Lxg_Xdthl7scUoajlvE0QEzzTck0Wbn-j41cM_BMkw4m"/>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm leading-relaxed">
+            Climate risk intelligence and digital underwriting passport bridging 140 million smallholder farm households with India's formal banking apparatus.
+          </p>
+<div class="flex items-center gap-2 pt-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-label-sm font-label-sm font-medium text-primary border border-outline-variant/40">
+<span class="h-2 w-2 rounded-full bg-secondary"></span>
+              Sentinel-2 &amp; IMD Active Telemetry
+            </span>
+</div>
+</div>
+<!-- Links Column 1: Platform -->
+<div class="space-y-3">
+<div class="font-label-lg text-label-lg font-bold text-primary">Platform</div>
+<ul class="space-y-2 font-body-sm text-body-sm text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Satellite Telemetry</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Credit Risk Index</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Underwriting Ledger</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Weather Models</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Agri-Credit Passport</a></li>
+</ul>
+</div>
+<!-- Links Column 2: Stakeholders -->
+<div class="space-y-3">
+<div class="font-label-lg text-label-lg font-bold text-primary">Solutions</div>
+<ul class="space-y-2 font-body-sm text-body-sm text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Commercial &amp; RRB Banks</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">NABARD &amp; PSL Desks</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Parametric Crop Insurers</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Farmer Producer Orgs (FPOs)</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">State Agriculture Depts</a></li>
+</ul>
+</div>
+<!-- Links Column 3: Governance & Compliance -->
+<div class="space-y-3">
+<div class="font-label-lg text-label-lg font-bold text-primary">Governance</div>
+<ul class="space-y-2 font-body-sm text-body-sm text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">RBI PSL Framework Parity</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">DPDP Act (2023) Compliance</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Geospatial Data Guidelines</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Algorithmic Audit Dossier</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Security Whitepaper</a></li>
+</ul>
+</div>
+</div>
+<!-- Bottom Compliance & Copyright Row -->
+<div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 font-body-sm text-body-sm text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span>© 2025 KisanSetu AI Technologies Pvt Ltd. All rights reserved.</span>
+</div>
+<div class="flex items-center gap-6">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Underwriting</a>
+<a class="hover:text-primary transition-colors" href="#">Responsible AI Charter</a>
+<a class="hover:text-primary transition-colors" href="#">System Health: 99.98%</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Micro-interactions Script for Persona Switcher -->
+<script>
+    function setPersona(persona) {
+      const personas = ['farmer', 'lender', 'insurer'];
+      personas.forEach(p => {
+        const el = document.getElementById('persona-' + p);
+        if (p === persona) {
+          el.className = "persona-tab px-3.5 py-1.5 rounded-full bg-primary-container text-primary-fixed font-semibold shadow-sm transition-all";
+        } else {
+          el.className = "persona-tab px-3 py-1.5 rounded-full text-on-surface-variant hover:text-primary transition-colors";
+        }
+      });
+    }
+  </script>
+</body></html>
